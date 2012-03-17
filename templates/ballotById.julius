@@ -1,0 +1,5 @@
+$(function () {
+    $('#printButton').button().click(function () {window.print()});
+    $('#createButton').button().click(function () {location = '/b'});
+    $('#deleteButton').button().click(function () {$('#deleteForm').submit()});
+});

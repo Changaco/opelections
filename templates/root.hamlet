@@ -1,0 +1,23 @@
+<div>
+    <div class="text-page">
+        <h1>#OpElections
+
+        <p>Citoyens, il est temps d'en finir avec la 5<sup>e</sup> République. Son fonctionnement non démocratique permet aux lobbys de façonner la Loi pour leurs profits. On a pu le constater ces dernières années, entre autres, avec les lois liberticides à répétition pour protéger les pratiques commerciales dépassées de l'industrie culturelle.
+
+        <p>Le principe de l'élection présidentielle, favorisant le bipartisme et les magouilles politiciennes, ne donne guère d'espoir pour celle de 2012. Les programmes des deux candidats "favoris" consistent à continuer sur la même ligne politique, dans le domaine du numérique et de la culture, mais aussi dans beaucoup d'autres. Les autres candidats n'ont quasiment aucune chance d'être élus, et ne tiendraient pas forcément leurs promesses de changement s'ils accédaient au pouvoir.
+
+        <p>Dans ce contexte, la meilleure chose à faire n'est-elle pas de rejeter tous les candidats ?
+
+        <p>La France a besoin d'une nouvelle Constitution, nous réclamons donc la création d'une ^{wikipediaFR "Assemblée Constituante"}.
+
+        <p>Si vous pensez comme nous que voter pour n'importe quel candidat à la présidentielle ne sert à rien, nous vous invitons à voter "blanc" en déposant un des bulletins subversifs ci-dessous ou à en créer un via notre <a href=@{BallotFormR}>générateur en ligne</a>.
+
+        <br>
+
+        <p id="signature">Nous sommes du peuple.<br>Nous n'oublions pas.<br>Nous ne pardonnons pas.<br>Rejoignez-nous !
+
+        <p id="share">Partagez ce site: ^{shareWidget MsgShareText url}
+
+<div>
+    <div class="text-page">
+        ^{faqWidget}

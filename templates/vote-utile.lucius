@@ -1,0 +1,12 @@
+#vote-utile-main, #vote-utile-faq { overflow: auto; }
+#vote-utile-main {
+    background-color: #fff33b;
+}
+#vote-utile-faq {
+    background-color: #55b8ff;
+}
+
+h1 {
+/*     color: #680e93; */
+/*     text-shadow: 1px 1px 1px #ccc; */
+}

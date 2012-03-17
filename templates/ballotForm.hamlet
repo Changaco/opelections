@@ -1,0 +1,50 @@
+<noscript>Cet outil nécessite JavaScript
+
+<div id="mainformWrapper" style="display: none">
+    <span class="margin-clearer">
+    <form id="mainform" action="" method="post">
+        <fieldset>
+            <legend>Texte du bulletin
+            <textarea type="text" id="text-input" name="text" lines="3">
+
+        <fieldset>
+            <legend>Images à ajouter sur le bulletin (cliquez pour sélectionner, glissez pour ordonner)
+            <input type="hidden" id="selectedImages" name="images" />
+            <div id="imagesSelect">
+            <a id="addimageButton"><img src="/static/img/list-add.png" /> Ajouter une autre image
+
+        <fieldset id="printOptions">
+            <legend>Mise en page
+            <label>Largeur d'un bulletin: <input id="render-width" name="width" type="text" value="16"/>cm
+            <br />
+            <label>Hauteur d'un bulletin: <input id="render-height" name="height" type="text" value="11"/>cm
+            <br />
+            <label>Nombre de bulletins par page: <input id="howManyToPrint" name="howManyToPrint" type="text" value="2"/>
+
+        <input type="hidden" name="imgWidth" />
+        <input type="hidden" name="imgHeight" />
+
+        <a id="mainformButton">OK
+    <span class="margin-clearer">
+
+<div id="result" style="display: none">
+    <span class="margin-clearer">
+    <div id="render" class="render">
+        <div id="text">
+        <div id="renderImages"><span class="valign">
+        <div id="genmsg">_{MsgGenerator host}
+    <a id="editButton"><img src="/static/img/accessories-text-editor.png" /> Modifier
+    <a id="shareButton"><img src="/static/img/thumb-up.png" /> Partager
+    <a id="printButton"><img src="/static/img/printer.png" /> Imprimer
+    <span class="margin-clearer">
+
+<div id="dialogs" style="display: none">
+    <form id="addimageForm" title="Ajouter une autre image">
+        <label>Ajouter une image distante: <input type="text" id="add-dist" placeholder="Entrez l'URL de l'image à ajouter" />
+        <label>Ajouter une image locale: <input type="file" id="add-local" />
+        <input type="hidden" id="addedImages" />
+
+    <div id="shareConfirm">
+        <p>Le bulletin que vous avez créé va être envoyé sur notre serveur pour que vous puissiez le partager facilement.
+        <p>Le nombre de bulletins que vous pouvez sauvegarder est limité.
+        <p>Êtes-vous sûr de vouloir partager ce bulletin ?

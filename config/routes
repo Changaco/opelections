@@ -1,0 +1,6 @@
+/static StaticR Static getStatic
+/auth   AuthR   Auth   getAuth
+
+/ RootR GET
+/b BallotFormR GET POST
+/b/#BallotId BallotByIdR GET POST

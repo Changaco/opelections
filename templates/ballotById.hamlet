@@ -1,0 +1,29 @@
+<div id="result">
+    <span class="margin-clearer">
+    $forall i <- enumFromTo 1 $ ballotHowManyToPrint ballot
+        $with isFirst <- i == 1
+            <div :isFirst:id="render" class="render" style="width: #{ballotWidth ballot}cm; height: #{ballotHeight ballot}cm">
+                <div id="text">#{ballotText ballot}
+                <div id="renderImages">
+                    <span class="valign">
+                    $forall src <- T.lines $ ballotImages ballot
+                        <img src="#{src}" alt="_{MsgImageLoadFailed}" />
+                <div id="genmsg">_{MsgGenerator host}
+    <div id="belowRender" style="min-width: #{ballotWidth ballot}cm">
+        <div>
+            <p>
+                Partagez ce bulletin: ^{shareWidget msg url}
+            <p>
+                <a id="printButton"><img src="/static/img/printer.png" /> Imprimer
+                <a id="createButton"><img src="/static/img/document-new.png" /> Nouveau
+            $if elem ballotIdText uploads
+                <form action="" method="post" id="deleteForm">
+                    <a id="deleteButton"><img src="/static/img/edit-delete.png" /> Supprimer
+        $if not $ null uploads
+            <div>
+                <div>
+                    <p id="uploads">_{MsgSavedBallots $ length uploads}
+                    <ul>
+                        $forall uploadId <- uploads
+                            <li><a href="/b/#{uploadId}">Bulletin n°#{uploadId}
+    <span class="margin-clearer">

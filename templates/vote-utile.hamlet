@@ -1,0 +1,19 @@
+<div id="vote-utile-main">
+    <div class="text-page">
+        <h1>Le vote utile l'est-il vraiment ?
+
+        <p>L'élection présidentielle de 2012 approche à grands pas, et bien sûr le PS et l'UMP appellent à « voter utile », pour contrer le camp adverse et les extrêmes. Un nom plus exact serait « vote d'immobilisme », car les grands partis n'ont pas l'intention de changer le système dont ils profitent. De plus, voter pour un petit parti plus proche de soi (quand il y en a un) n'est pas vraiment utile non plus puisqu'ils n'ont quasiment aucune chance d'accéder au pouvoir.
+
+        <p>Face à ce constat, nous refusons de soutenir cette mascarade de démocratie qu'est l'élection présidentielle.
+
+        <p>Nous réclamons la création d'une ^{wikipediaFR "Assemblée Constituante"} chargée de rédiger une nouvelle Constitution qui sera soumise à référendum.
+
+        <p>C'est dans cette optique que nous déposerons des bulletins subversifs dans les urnes. Nos votes seront comptés comme blancs/nuls et nos bulletins seront <a href="http://www.conseil-constitutionnel.fr/conseil-constitutionnel/francais/documentation-publications/dossiers-thematiques/2005-referendum-traite-constitution-pour-l-europe/bulletins-blancs-et-nuls.45631.html#que2">conservés par le Conseil Constitutionnel</a>.
+
+        <p>Si vous aussi vous en avez marre de la 5<sup>e</sup> République, votez utile, votez « blanc ». Vous pouvez imprimer un des bulletins ci-dessous ou <a href=@{BallotFormR}>en créer un via notre générateur en ligne</a>.
+
+        <p id="share">Partagez ce site: ^{shareWidget MsgShareVoteUtile url}
+
+<div id="vote-utile-faq">
+    <div class="text-page">
+        ^{faqWidget}

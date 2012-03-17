@@ -1,0 +1,20 @@
+Default: &defaults
+  database: opelections.sqlite3
+  poolsize: 10
+
+Development:
+  <<: *defaults
+
+Test:
+  database: opelections_test.sqlite3
+  <<: *defaults
+
+Staging:
+  database: opelections_staging.sqlite3
+  poolsize: 100
+  <<: *defaults
+
+Production:
+  database: opelections_production.sqlite3
+  poolsize: 100
+  <<: *defaults

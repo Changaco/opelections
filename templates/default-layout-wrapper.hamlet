@@ -1,0 +1,18 @@
+\<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>#{pageTitle pc}
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        ^{pageHead pc}
+
+        <style type="text/css" media="print">
+            html, body { margin: 0; padding: 0; }
+            #mainformWrapper, #result { min-height: 0; background-color: #fff; }
+            #mainform, #belowRender { display: none; }
+            .render { display: inline-block; margin: 1mm; }
+    <body>
+        ^{pageBody pc}

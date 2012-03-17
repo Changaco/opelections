@@ -1,0 +1,6 @@
+html {
+    background-color: #000;
+    color: #fff;
+    overflow: auto;
+}
+#signature { line-height: 150%; }
