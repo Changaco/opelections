@@ -13,4 +13,5 @@ Staging:
   <<: *defaults
 
 Production:
+  port: 0
   <<: *defaults

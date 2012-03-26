@@ -100,3 +100,4 @@ executable         opelections
                  , wai
                  , http-types
                  , blaze-html
+                 , warp
