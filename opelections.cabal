@@ -52,9 +52,9 @@ executable         opelections
 
     if flag(dev)
         cpp-options:   -DDEVELOPMENT
-        ghc-options:   -Wall -threaded -O0
+        ghc-options:   -Wall -threaded -O0 -fno-warn-missing-signatures
     else
-        ghc-options:   -Wall -threaded -O2
+        ghc-options:   -Wall -threaded -O2 -fno-warn-missing-signatures
 
     main-is:       main.hs
 
