@@ -14,8 +14,8 @@
             <p>
                 Partagez ce bulletin: ^{shareWidget msg url}
             <p>
-                <a id="printButton"><img src="/static/img/printer.png" /> Imprimer
-                <a id="createButton"><img src="/static/img/document-new.png" /> Nouveau
+                <a id="printButton" href="javascript:print()"><img src="/static/img/printer.png" /> Imprimer
+                <a id="createButton" href="/b"><img src="/static/img/document-new.png" /> Nouveau
             $if elem ballotIdText uploads
                 <form action="" method="post" id="deleteForm">
                     <a id="deleteButton"><img src="/static/img/edit-delete.png" /> Supprimer

@@ -14,6 +14,12 @@
 
         <p id="share">Partagez ce site: ^{shareWidget MsgShareVoteUtile url}
 
+        <p id="examples">
+            $forall i <- enumFromTo one 2
+                <a href="b/#{show i}"><img src="static/img/bulletin-#{show i}-r.png">
+
+        <span .clearer>
+
 <div id="vote-utile-faq">
     <div class="text-page">
         ^{faqWidget}

@@ -12,12 +12,18 @@
 
         <p>Si vous pensez comme nous que voter pour n'importe quel candidat à la présidentielle ne sert à rien, nous vous invitons à voter "blanc" en déposant un des bulletins subversifs ci-dessous ou à en créer un via notre <a href=@{BallotFormR}>générateur en ligne</a>.
 
-        <br>
+        <p id="share">Partagez ce site: ^{shareWidget MsgShareOpelections url}<br>Voir aussi: <a href="http://vote-utile.fr/">vote-utile.fr</a>
 
-        <p id="signature">Nous sommes du peuple.<br>Nous n'oublions pas.<br>Nous ne pardonnons pas.<br>Rejoignez-nous !
+        <p id="examples">
+            $forall i <- enumFromTo one 2
+                <a href="b/#{show i}"><img src="static/img/bulletin-#{show i}-r.png">
 
-        <p id="share">Partagez ce site: ^{shareWidget MsgShareText url}
+        <span .clearer>
 
 <div>
     <div class="text-page">
         ^{faqWidget}
+
+        <h3>#OpElections est-elle une opération officielle d'Anonymous ?
+
+        <p>Premièrement il n'y a rien d'officiel dans le mouvement Anonymous. Deuxièmement #opelections ne se revendique pas spécifiquement d'Anonymous.

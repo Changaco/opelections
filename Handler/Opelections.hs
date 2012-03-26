@@ -10,6 +10,8 @@ import Network.HTTP.Types
 import Network.Wai
 
 
+one = 1 :: Int
+
 getHost = decodeUtf8 <$> serverName <$> waiRequest
 
 getUrl = do
@@ -50,6 +52,13 @@ getRootR = do
         if host == "vote-utile.fr"
            then $(widgetFile "vote-utile")
            else $(widgetFile "root")
+
+
+getFaviconR :: Handler ()
+getFaviconR = sendFile "image/x-icon" "config/favicon.ico"
+
+getRobotsR :: Handler ()
+getRobotsR = sendFile "text/plain" "config/robots.txt"
 
 
 ballotHead = [hamlet|
@@ -120,7 +129,7 @@ getBallotByIdR ballotId = do
     host <- getHost
     url <- getUrl
     uploads <- getUploadsFromSession
-    let msg = if host == "vote-utile.fr" then MsgShareVoteUtile else MsgShareText
+    let msg = if host == "vote-utile.fr" then MsgShareVoteUtile else MsgShareOpelections
         ballotIdText = keyToText ballotId
         ownBallot = ballotIdText `elem` uploads
     defaultLayout $ do

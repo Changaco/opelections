@@ -3,4 +3,4 @@ html {
     color: #fff;
     overflow: auto;
 }
-#signature { line-height: 150%; }
+#share { line-height: 200%; }

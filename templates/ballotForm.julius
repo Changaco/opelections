@@ -1,6 +1,8 @@
 
 defaultImages = [{src: '/static/img/guy-fawkes-mask.png', title: 'CC-By-NC-SA http://vanda10.deviantart.com/art/Guy-Fawkes-mask-210523293'},
-                 {src: '/static/img/anonymous-logo.png', title: 'CC0 http://commons.wikimedia.org/wiki/File:Anonymous_Logos.svg'}];
+                 {src: '/static/img/anonymous-logo.png', title: 'CC0 http://commons.wikimedia.org/wiki/File:Anonymous_Logos.svg'},
+                 {src: '/static/img/nonmerci.jpg'},
+                 {src: '/static/img/marianne.jpg'}];
 
 $(function () {
     $('#mainformWrapper').show();
