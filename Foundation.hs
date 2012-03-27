@@ -21,7 +21,6 @@ import Yesod.Auth.BrowserId
 import Yesod.Auth.GoogleEmail
 import Yesod.Default.Config
 import Yesod.Default.Util (addStaticContentExternal)
-import Yesod.Logger (Logger, logMsg, formatLogText)
 import Network.HTTP.Conduit (Manager)
 #ifdef DEVELOPMENT
 import Yesod.Logger (logLazyText)
@@ -51,7 +50,6 @@ import Data.Text (Text)
 -- access to the data present here.
 data Opelections = Opelections
     { settings :: AppConfig DefaultEnv Extra
-    , getLogger :: Logger
     , getStatic :: Static -- ^ Settings for static file serving.
     , connPool :: Database.Persist.Store.PersistConfigPool Settings.PersistConfig -- ^ Database connection pool.
     , httpManager :: Manager
@@ -92,7 +90,6 @@ type Form x = Html -> MForm Opelections Opelections (FormResult x, Widget)
 -- of settings which can be configured by overriding methods here.
 instance Yesod Opelections where
     approot = ApprootRelative
---     approot = ApprootRequest $ \_ req -> decodeUtf8 $ serverName req
 
     -- Place the session key file in the config folder
     encryptKey _ = fmap Just $ getKey "config/client_session_key.aes"
@@ -121,8 +118,7 @@ instance Yesod Opelections where
     -- The page to be redirected to when authentication is required.
     authRoute _ = Just $ AuthR LoginR
 
-    messageLogger y loc level msg =
-      formatLogText (getLogger y) loc level msg >>= logMsg (getLogger y)
+    messageLogger _ _ _ _ = return ()
 
     -- This function creates static content files in the static folder
     -- and names them based on a hash of their content. This allows

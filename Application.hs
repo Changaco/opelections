@@ -9,18 +9,11 @@ import Settings
 import Settings.StaticFiles (staticSite)
 import Yesod.Auth
 import Yesod.Default.Config
-import Yesod.Default.Main
 import Yesod.Default.Handlers()
-#if DEVELOPMENT
-import Yesod.Logger (Logger, logBS)
-import Network.Wai.Middleware.RequestLogger (logCallbackDev)
-#else
-import Yesod.Logger (Logger, logBS, toProduction)
-import Network.Wai.Middleware.RequestLogger (logCallback)
-#endif
 import qualified Database.Persist.Store
 import Database.Persist.GenericSql (runMigration)
 import Network.HTTP.Conduit (newManager, def)
+import Prelude (putStrLn)
 
 -- Import all relevant handler modules here.
 import Handler.Opelections
@@ -34,8 +27,8 @@ mkYesodDispatch "Opelections" resourcesOpelections
 -- performs initialization and creates a WAI application. This is also the
 -- place to put your migrate statements to have automatic database
 -- migrations handled by Yesod.
-getApplication :: AppConfig DefaultEnv Extra -> Logger -> IO Application
-getApplication conf logger = do
+getApplication :: AppConfig DefaultEnv Extra -> IO Application
+getApplication conf = do
     manager <- newManager def
     s <- staticSite
     dbconf <- withYamlEnvironment "config/sqlite.yml" (appEnv conf)
@@ -43,17 +36,19 @@ getApplication conf logger = do
               Database.Persist.Store.applyEnv
     p <- Database.Persist.Store.createPoolConfig (dbconf :: Settings.PersistConfig)
     Database.Persist.Store.runPool dbconf (runMigration migrateAll) p
-    let foundation = Opelections conf setLogger s p manager dbconf
+    let foundation = Opelections conf s p manager dbconf
     app <- toWaiAppPlain foundation
-    return $ logWare app
-  where
-#ifdef DEVELOPMENT
-    logWare = logCallbackDev (logBS setLogger)
-    setLogger = logger
-#else
-    setLogger = toProduction logger -- by default the logger is set for development
-    logWare = logCallback (logBS setLogger)
-#endif
+    return app
+
+
+-- from Yesod.Default.Main
+defaultDevelApp load getApp = do
+    conf   <- load
+    let p = appPort conf
+    putStrLn $ "Devel application launched, listening on port " ++ show p
+    app <- getApp conf
+    return (p, app)
+
 
 -- for yesod devel
 getApplicationDev :: IO (Int, Application)
