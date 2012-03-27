@@ -21,7 +21,6 @@ import Yesod.Default.Config
 import qualified Yesod.Default.Util
 import Data.Text (Text)
 import Data.Yaml
-import Control.Applicative
 
 -- | Which Persistent backend this site is using.
 type PersistConfig = SqliteConf
@@ -60,15 +59,10 @@ widgetFile = Yesod.Default.Util.widgetFileReload
 widgetFile = Yesod.Default.Util.widgetFileNoReload
 #endif
 
-data Extra = Extra
-    { extraCopyright :: Text
-    , extraAnalytics :: Maybe Text -- ^ Google Analytics
-    } deriving Show
+data Extra = Extra deriving Show
 
 parseExtra :: DefaultEnv -> Object -> Parser Extra
-parseExtra _ o = Extra
-    <$> o .:  "copyright"
-    <*> o .:? "analytics"
+parseExtra _ _ = return Extra
 
 
 defaultLanguage :: Text

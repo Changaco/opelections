@@ -1,7 +1,6 @@
 Default: &defaults
   approot: ""
   port: 3000
-  copyright: CC-By
 
 Development:
   <<: *defaults
