@@ -54,7 +54,7 @@ executable         opelections
         cpp-options:   -DDEVELOPMENT
         ghc-options:   -Wall -threaded -O0 -fno-warn-missing-signatures
     else
-        ghc-options:   -Wall -threaded -O2 -fno-warn-missing-signatures
+        ghc-options:   -Wall -threaded -O1 -fno-warn-missing-signatures
 
     main-is:       main.hs
 
