@@ -22,9 +22,6 @@ import Yesod.Auth.GoogleEmail
 import Yesod.Default.Config
 import Yesod.Default.Util (addStaticContentExternal)
 import Network.HTTP.Conduit (Manager)
-#ifdef DEVELOPMENT
-import Yesod.Logger (logLazyText)
-#endif
 import qualified Settings
 import qualified Data.ByteString.Lazy as L
 import qualified Database.Persist.Store
@@ -36,6 +33,7 @@ import Web.ClientSession (getKey)
 import Text.Hamlet (hamletFile)
 #if DEVELOPMENT
 import qualified Data.Text.Lazy.Encoding
+import qualified Data.Text.Lazy.IO
 #else
 import Network.Mail.Mime (sendmail)
 #endif
@@ -162,7 +160,7 @@ instance YesodAuth Opelections where
 -- Sends off your mail. Requires sendmail in production!
 deliver :: Opelections -> L.ByteString -> IO ()
 #ifdef DEVELOPMENT
-deliver y = logLazyText (getLogger y) . Data.Text.Lazy.Encoding.decodeUtf8
+deliver _ = Data.Text.Lazy.IO.putStrLn . Data.Text.Lazy.Encoding.decodeUtf8
 #else
 deliver _ = sendmail
 #endif
