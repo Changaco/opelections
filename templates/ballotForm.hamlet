@@ -1,7 +1,6 @@
 <noscript>Cet outil nécessite JavaScript
 
 <div id="mainformWrapper" style="display: none">
-    <span class="margin-clearer">
     <form id="mainform" action="" method="post">
         <fieldset>
             <legend>Texte du bulletin
@@ -24,11 +23,12 @@
         <input type="hidden" name="imgWidth" />
         <input type="hidden" name="imgHeight" />
 
-        <a id="mainformButton">OK
-    <span class="margin-clearer">
+        <div class="table" style="min-width: 100%;">
+            <div>
+                <p><a id="mainformButton">OK</a>
+                <p><a href="/" class="nav"><img src="/static/img/go-home.png" /> Accueil</a>
 
 <div id="result" style="display: none">
-    <span class="margin-clearer">
     <div id="render" class="render">
         <div id="text">
         <div id="renderImages"><span class="valign">
@@ -36,7 +36,7 @@
     <a id="editButton"><img src="/static/img/accessories-text-editor.png" /> Modifier
     <a id="shareButton"><img src="/static/img/thumb-up.png" /> Partager
     <a id="printButton"><img src="/static/img/printer.png" /> Imprimer
-    <span class="margin-clearer">
+
 
 <div id="dialogs" style="display: none">
     <form id="addimageForm" title="Ajouter une autre image">
