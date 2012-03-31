@@ -1,6 +1,6 @@
 <div>
     <div class="text-page">
-        <h1>#OpElections <span style="font-size:50%;">(non, ce n'est pas une opération d'Anonymous)</span>
+        <h1>#OpElections <span style="font-size:50%;">(non, ce n'est pas une opération Anonymous)</span>
 
         <p>Citoyens, il est temps d'en finir avec la 5<sup>e</sup> République. Son fonctionnement non démocratique permet aux lobbys de façonner la Loi pour leur profit. On a pu le constater ces dernières années, entre autres, avec les lois liberticides à répétition pour protéger les pratiques commerciales dépassées de l'industrie culturelle.
 
@@ -8,11 +8,11 @@
 
         <p>Dans ce contexte, la meilleure chose à faire n'est-elle pas de rejeter tous les candidats ?
 
-        <p>La France a besoin d'une nouvelle Constitution, nous réclamons donc la création d'une ^{wikipediaFR "Assemblée Constituante"}.
+        <p>Il est temps de réaliser qu'une seule personne ne peut pas en représenter 60 millions et que la France a besoin d'une nouvelle Constitution.
 
-        <p>Si vous pensez comme nous que voter pour n'importe quel candidat à la présidentielle ne sert à rien, nous vous invitons à voter "blanc" en déposant un des bulletins subversifs ci-dessous ou à en créer un via notre <a href=@{BallotFormR}>générateur en ligne</a>.
+        <p>Si vous pensez comme nous que voter pour n'importe quel candidat à la présidentielle ne sert à rien, nous vous invitons à voter pour la création d'une ^{wikipediaFR "Assemblée Constituante"} en déposant un des bulletins subversifs (qui sont comptés comme blancs/nuls) ci-dessous ou à en créer un via notre <a href=@{BallotFormR}>générateur en ligne</a>.
 
-        <p id="share">Partagez ce site: ^{shareWidget MsgShareOpelections url}<br>Voir aussi: <a href="http://vote-utile.fr/">vote-utile.fr</a>
+        <p id="share"><b>Faites passer le mot:</b> ^{shareWidget MsgShareOpelections url}<br>Voir aussi: <a href="http://vote-utile.fr/">vote-utile.fr</a>
 
         <p id="examples">
             $forall i <- enumFromTo one 2
