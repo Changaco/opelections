@@ -23,7 +23,6 @@ import Yesod.Default.Config
 import Yesod.Default.Util (addStaticContentExternal)
 import Network.HTTP.Conduit (Manager)
 import qualified Settings
-import qualified Data.ByteString.Lazy as L
 import qualified Database.Persist.Store
 import Database.Persist.GenericSql
 import Settings (widgetFile, Extra (..), defaultLanguage)
@@ -31,12 +30,6 @@ import Model
 import Text.Jasmine (minifym)
 import Web.ClientSession (getKey)
 import Text.Hamlet (hamletFile)
-#if DEVELOPMENT
-import qualified Data.Text.Lazy.Encoding
-import qualified Data.Text.Lazy.IO
-#else
-import Network.Mail.Mime (sendmail)
-#endif
 
 import Data.Text (Text)
 -- import Data.Text.Encoding
@@ -89,8 +82,13 @@ type Form x = Html -> MForm Opelections Opelections (FormResult x, Widget)
 instance Yesod Opelections where
     approot = ApprootRelative
 
-    -- Place the session key file in the config folder
-    encryptKey _ = fmap Just $ getKey "config/client_session_key.aes"
+--     -- Place the session key file in the config folder
+--     encryptKey _ = fmap Just $ getKey "config/client_session_key.aes"
+    -- Store session data on the client in encrypted cookies,
+    -- default session idle timeout is 120 minutes
+    makeSessionBackend _ = do
+        key <- getKey "config/client_session_key.aes"
+        return . Just $ clientSessionBackend key 120
 
     defaultLayout widget = do
         master <- getYesod
@@ -156,14 +154,6 @@ instance YesodAuth Opelections where
     authPlugins _ = [authBrowserId, authGoogleEmail]
 
     authHttpManager = httpManager
-
--- Sends off your mail. Requires sendmail in production!
-deliver :: Opelections -> L.ByteString -> IO ()
-#ifdef DEVELOPMENT
-deliver _ = Data.Text.Lazy.IO.putStrLn . Data.Text.Lazy.Encoding.decodeUtf8
-#else
-deliver _ = sendmail
-#endif
 
 -- This instance is required to use forms. You can modify renderMessage to
 -- achieve customized and internationalized form validation messages.

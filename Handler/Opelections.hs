@@ -11,6 +11,7 @@ import Network.Wai
 
 
 one = 1 :: Int
+eq = (==)
 
 getHost = decodeUtf8 <$> serverName <$> waiRequest
 
@@ -72,7 +73,7 @@ getBallotFormR = do
     host <- decodeUtf8 <$> serverName <$> waiRequest
     defaultLayout $ do
         setTitleI MsgBallotFormTitle
-        addHamletHead ballotHead
+        toWidgetHead ballotHead
         $(widgetFile "ballotForm")
 
 postBallotFormR :: Handler RepHtml
@@ -134,8 +135,8 @@ getBallotByIdR ballotId = do
         ownBallot = ballotIdText `elem` uploads
     defaultLayout $ do
         setTitleI $ MsgBallotByIdTitle ballotIdText
-        addHamletHead ballotHead
-        addHamletHead [hamlet|
+        toWidgetHead ballotHead
+        toWidgetHead [hamlet|
             <style>
                 #renderImages > img {
                     max-width: #{ballotImgWidth ballot}px;

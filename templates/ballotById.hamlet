@@ -1,6 +1,6 @@
 <div id="result">
     $forall i <- enumFromTo 1 $ ballotHowManyToPrint ballot
-        $with isFirst <- i == 1
+        $with isFirst <- eq i 1
             <div :isFirst:id="render" class="render" style="width: #{ballotWidth ballot}cm; height: #{ballotHeight ballot}cm">
                 <div id="text">#{ballotText ballot}
                 <div id="renderImages">
