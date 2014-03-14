@@ -1,7 +1,12 @@
 .archive
-cabal-dev
-dist
-.static-cache
-static/tmp
+dist*
+static/tmp/
+config/client_session_key.aes
+*.hi
+*.o
 *.sqlite3
-*.kate-swp
+.hsenv*
+cabal-dev/
+yesod-devel/
+.cabal-sandbox
+cabal.sandbox.config

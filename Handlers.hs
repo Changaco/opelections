@@ -1,65 +1,29 @@
-module Handler.Opelections where
+module Handlers where
 
+import Import
 
-import Database.Persist.Store
-import Data.Maybe
 import qualified Data.Text as T
 import Data.Time.Clock.POSIX
-import Import
 import Network.HTTP.Types
-import Network.Wai
+
+import Widgets
 
 
-one = 1 :: Int
-eq = (==)
-
-getHost = decodeUtf8 <$> serverName <$> waiRequest
-
-getUrl = do
-    host <- getHost
-    renderer <- getUrlRender
-    maybeRoute <- getCurrentRoute
-    case maybeRoute of
-         Just r -> return $ "http://" <> host <> renderer r
-         Nothing -> return ""
-
-
-shareWidget :: (RenderMessage Opelections a) => (Text -> a) -> Text -> Widget
-shareWidget msg url = [whamlet|
-    <a href="http://www.facebook.com/sharer.php?u=#{url}&t=_{msg url}"><img src="/static/img/facebook.png" />
-    <a href="https://twitter.com/share?text=_{msg url}"><img src="/static/img/twitter.png" />
-    <a href="http://identi.ca/index.php?action=newnotice&status_textarea=_{msg url}"><img src="/static/img/identi.png" />
-|]
-
-
-faqWidget = $(whamletFile "templates/faq.hamlet")
-
-wikipediaFR :: Text -> Widget
-wikipediaFR t = [whamlet|<a href="http://fr.wikipedia.org/wiki/#{t}">#{t}|]
-
-
-errorPage :: Status -> OpelectionsMessage -> Handler ()
+errorPage :: Status -> AppMessage -> Handler ()
 errorPage status errorMessage = do
     html <- defaultLayout $(widgetFile "error")
     sendResponseStatus status html
 
 
-getRootR :: Handler RepHtml
+getRootR :: Handler Html
 getRootR = do
     host <- getHost
     url <- getUrl
     defaultLayout $ do
         setTitle $ toHtml host
-        if host == "vote-utile.fr"
+        if host == "vote-utile.oy.lc"
            then $(widgetFile "vote-utile")
            else $(widgetFile "root")
-
-
-getFaviconR :: Handler ()
-getFaviconR = sendFile "image/x-icon" "config/favicon.ico"
-
-getRobotsR :: Handler ()
-getRobotsR = sendFile "text/plain" "config/robots.txt"
 
 
 ballotHead = [hamlet|
@@ -68,18 +32,18 @@ ballotHead = [hamlet|
     <script type="text/javascript" src="/static/js/jquery-ui-1.8.17.custom.min.js">
 |]
 
-getBallotFormR :: Handler RepHtml
+getBallotFormR :: Handler Html
 getBallotFormR = do
-    host <- decodeUtf8 <$> serverName <$> waiRequest
+    host <- getHost
     defaultLayout $ do
         setTitleI MsgBallotFormTitle
         toWidgetHead ballotHead
         $(widgetFile "ballotForm")
 
-postBallotFormR :: Handler RepHtml
+postBallotFormR :: Handler Html
 postBallotFormR = do
     -- Check upload rate limit
-    uploadFrom <- fromJust <$> lookup "X-Real-IP" <$> requestHeaders <$> waiRequest
+    uploadFrom <- getClientIP
     now <- liftIO getCurrentTime
     let yesterday = posixSecondsToUTCTime $ utcTimeToPOSIXSeconds now - 86400
     prevUploads <- runDB $ selectList [BallotUploadFrom ==. uploadFrom, BallotUploadTime >. yesterday] []
@@ -121,16 +85,16 @@ postBallotFormR = do
 
 getUploadsFromSession = filter (not . T.null) <$> T.splitOn "," <$> maybe "" id <$> lookupSession "uploads"
 
-keyToText key = showT i
+keyToText key = pack $ show i
     where (PersistInt64 i) = unKey key
 
-getBallotByIdR :: BallotId -> Handler RepHtml
+getBallotByIdR :: BallotId -> Handler Html
 getBallotByIdR ballotId = do
     ballot <- runDB $ get404 ballotId
     host <- getHost
     url <- getUrl
     uploads <- getUploadsFromSession
-    let msg = if host == "vote-utile.fr" then MsgShareVoteUtile else MsgShareOpelections
+    let msg = if host == "vote-utile.oy.lc" then MsgShareVoteUtile else MsgShareOpelections
         ballotIdText = keyToText ballotId
         ownBallot = ballotIdText `elem` uploads
     defaultLayout $ do

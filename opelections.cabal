@@ -1,13 +1,10 @@
 name:              opelections
-version:           1.0
-license:           BSD3
-license-file:      LICENSE
+version:           2.0
+license:           GPL-3
 author:            Changaco
-maintainer:        Changaco
-stability:         Experimental
-cabal-version:     >= 1.6
+cabal-version:     >= 1.8
 build-type:        Simple
-homepage:          http://opelections.info/
+homepage:          https://github.com/Changaco/opelections
 
 Flag dev
     Description:   Turn on development settings, like auto-reload templates.
@@ -18,21 +15,22 @@ Flag library-only
     Default:       False
 
 library
-    if flag(library-only)
-        Buildable: True
-    else
-        Buildable: False
-
     exposed-modules: Application
-    other-modules:   Foundation
-                     Handler.Opelections
+                     Foundation
+                     Handlers
                      Import
                      Model
                      Settings
                      Settings.StaticFiles
+                     Settings.Development
+                     Utils
+                     Widgets
 
-    ghc-options:   -Wall -threaded -O0 -fno-warn-missing-signatures
-    cpp-options:   -DDEVELOPMENT
+    if flag(dev) || flag(library-only)
+        cpp-options:   -DDEVELOPMENT
+        ghc-options:   -Wall -O0 -fno-warn-missing-signatures
+    else
+        ghc-options:   -Wall -O2 -fno-warn-missing-signatures
 
     extensions: TemplateHaskell
                 QuasiQuotes
@@ -45,59 +43,56 @@ library
                 GeneralizedNewtypeDeriving
                 FlexibleContexts
                 EmptyDataDecls
+                NoMonomorphismRestriction
+                DeriveDataTypeable
+
+    build-depends: base >= 4 && < 5
+                 , blaze-html
+                 , bytestring
+                 , classy-prelude
+                 , clientsession
+                 , data-default
+                 , directory
+                 , fast-logger
+                 , hamlet
+                 , hjsmin
+                 , http-conduit
+                 , http-types
+                 , mime-mail
+                 , monad-control
+                 , monad-logger
+                 , network
+                 , persistent
+                 , persistent-sqlite
+                 , persistent-template
+                 , process >= 1.2.0.0
+                 , shakespeare-css
+                 , shakespeare-js
+                 , shakespeare-text
+                 , system-filepath
+                 , template-haskell
+                 , text
+                 , time
+                 , wai
+                 , wai-extra
+                 , wai-logger
+                 , yaml
+                 , yesod
+                 , yesod-auth
+                 , yesod-core
+                 , yesod-form
+                 , yesod-static
+
 
 executable         opelections
     if flag(library-only)
         Buildable: False
 
-    if flag(dev)
-        cpp-options:   -DDEVELOPMENT
-        ghc-options:   -Wall -threaded -O0 -fno-warn-missing-signatures
-    else
-        ghc-options:   -Wall -threaded -O1 -fno-warn-missing-signatures
+    ghc-options:  -Wall -threaded -O2
 
-    main-is:       main.hs
+    main-is:          main.hs
+    hs-source-dirs:   app
 
-    extensions: TemplateHaskell
-                QuasiQuotes
-                OverloadedStrings
-                NoImplicitPrelude
-                CPP
-                OverloadedStrings
-                MultiParamTypeClasses
-                TypeFamilies
-                GADTs
-                GeneralizedNewtypeDeriving
-                FlexibleContexts
-                EmptyDataDecls
-
-    build-depends: base >= 4 && < 5
+    build-depends: base
+                 , opelections
                  , yesod
-                 , yesod-core
-                 , yesod-auth
-                 , yesod-static
-                 , yesod-default
-                 , yesod-form
-                 , mime-mail
-                 , clientsession
-                 , bytestring
-                 , text
-                 , persistent
-                 , persistent-sqlite
-                 , template-haskell
-                 , hamlet
-                 , shakespeare-css
-                 , shakespeare-js
-                 , shakespeare-text
-                 , hjsmin
-                 , monad-control
-                 , wai-extra
-                 , yaml
-                 , http-conduit
-                 , time
-                 , network
-                 , persistent-template
-                 , wai
-                 , http-types
-                 , blaze-html
-                 , warp

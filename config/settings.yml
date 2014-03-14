@@ -1,6 +1,7 @@
 Default: &defaults
-  approot: ""
-  port: 3000
+  host: "127.0.0.1"
+  port: 8851
+  approot: "//localhost:8851"
 
 Development:
   <<: *defaults
@@ -12,5 +13,5 @@ Staging:
   <<: *defaults
 
 Production:
-  port: 0
+  approot: "//opelections.oy.lc"
   <<: *defaults

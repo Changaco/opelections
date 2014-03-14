@@ -1,94 +1,65 @@
-module Foundation
-    ( Opelections (..)
-    , Route (..)
-    , OpelectionsMessage (..)
-    , resourcesOpelections
-    , Handler
-    , Widget
-    , Form
-    , maybeAuth
-    , requireAuth
-    , module Settings
-    , module Model
-    ) where
+module Foundation where
 
-import Prelude
+import ClassyPrelude
+
+import qualified Database.Persist
+import Database.Persist.Sql (SqlPersistT)
+import Network.HTTP.Conduit (Manager)
+import Text.Hamlet (hamletFile)
+import Text.Jasmine (minifym)
 import Yesod
-import Yesod.Static
--- import Settings.StaticFiles
 import Yesod.Auth
 import Yesod.Auth.BrowserId
 import Yesod.Auth.GoogleEmail
+import Yesod.Core.Types (Logger)
 import Yesod.Default.Config
 import Yesod.Default.Util (addStaticContentExternal)
-import Network.HTTP.Conduit (Manager)
-import qualified Settings
-import qualified Database.Persist.Store
-import Database.Persist.GenericSql
-import Settings (widgetFile, Extra (..), defaultLanguage)
-import Model
-import Text.Jasmine (minifym)
-import Web.ClientSession (getKey)
-import Text.Hamlet (hamletFile)
+import Yesod.Static
 
-import Data.Text (Text)
--- import Data.Text.Encoding
--- import Network.Wai
+import Model
+import qualified Settings
+import Settings (widgetFile, Extra (..))
+import Settings.Development (development)
+import Settings.StaticFiles
+import Utils
 
 -- | The site argument for your application. This can be a good place to
 -- keep settings and values requiring initialization before your application
 -- starts running, such as database connections. Every handler will have
 -- access to the data present here.
-data Opelections = Opelections
+data App = App
     { settings :: AppConfig DefaultEnv Extra
     , getStatic :: Static -- ^ Settings for static file serving.
-    , connPool :: Database.Persist.Store.PersistConfigPool Settings.PersistConfig -- ^ Database connection pool.
+    , connPool :: Database.Persist.PersistConfigPool Settings.PersistConf -- ^ Database connection pool.
     , httpManager :: Manager
-    , persistConfig :: Settings.PersistConfig
+    , persistConfig :: Settings.PersistConf
+    , appLogger :: Logger
     }
 
 -- Set up i18n messages. See the message folder.
-plural :: Int -> String -> String -> String
-plural 1 x _ = x
-plural _ _ y = y
-
-mkMessage "Opelections" "messages" defaultLanguage
+mkMessage "App" "messages" "fr"
 
 -- This is where we define all of the routes in our application. For a full
 -- explanation of the syntax, please see:
--- http://www.yesodweb.com/book/handler
+-- http://www.yesodweb.com/book/routing-and-handlers
 --
--- This function does three things:
---
--- * Creates the route datatype OpelectionsRoute. Every valid URL in your
---   application can be represented as a value of this type.
--- * Creates the associated type:
---       type instance Route Opelections = OpelectionsRoute
--- * Creates the value resourcesOpelections which contains information on the
---   resources declared below. This is used in Handler.hs by the call to
---   mkYesodDispatch
---
--- What this function does *not* do is create a YesodSite instance for
--- Opelections. Creating that instance requires all of the handler functions
--- for our application to be in scope. However, the handler functions
--- usually require access to the OpelectionsRoute datatype. Therefore, we
--- split these actions into two functions and place them in separate files.
-mkYesodData "Opelections" $(parseRoutesFile "config/routes")
+-- Note that this is really half the story; in Application.hs, mkYesodDispatch
+-- generates the rest of the code. Please see the linked documentation for an
+-- explanation for this split.
+mkYesodData "App" $(parseRoutesFile "config/routes")
 
-type Form x = Html -> MForm Opelections Opelections (FormResult x, Widget)
+type Form x = Html -> MForm (HandlerT App IO) (FormResult x, Widget)
 
 -- Please see the documentation for the Yesod typeclass. There are a number
 -- of settings which can be configured by overriding methods here.
-instance Yesod Opelections where
-    approot = ApprootRelative
+instance Yesod App where
+    approot = ApprootMaster $ appRoot . settings
 
---     -- Place the session key file in the config folder
---     encryptKey _ = fmap Just $ getKey "config/client_session_key.aes"
     -- Store session data on the client in encrypted cookies,
     -- default session idle timeout is 120 minutes
-    makeSessionBackend _ = do
-        key <- getKey "config/client_session_key.aes"
-        return . Just $ clientSessionBackend key 120
+    makeSessionBackend _ = fmap Just $ defaultClientSessionBackend
+        (120 * 60) -- 120 minutes
+        "config/client_session_key.aes"
 
     defaultLayout widget = do
         master <- getYesod
@@ -101,9 +72,11 @@ instance Yesod Opelections where
         -- you to use normal widget features in default-layout.
 
         pc <- widgetToPageContent $ do
-            $(widgetFile "normalize")
+            $(combineStylesheets 'StaticR
+                [ css_normalize_css
+                ])
             $(widgetFile "default-layout")
-        hamletToRepHtml $(hamletFile "templates/default-layout-wrapper.hamlet")
+        giveUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")
 
     -- This is done to provide an optimization for serving static files from
     -- a separate domain. Please see the staticRoot setting in Settings.hs
@@ -114,29 +87,37 @@ instance Yesod Opelections where
     -- The page to be redirected to when authentication is required.
     authRoute _ = Just $ AuthR LoginR
 
-    messageLogger _ _ _ _ = return ()
-
     -- This function creates static content files in the static folder
     -- and names them based on a hash of their content. This allows
     -- expiration dates to be set far in the future without worry of
     -- users receiving stale content.
-    addStaticContent = addStaticContentExternal minifym base64md5 Settings.staticDir (StaticR . flip StaticRoute [])
+    addStaticContent =
+        addStaticContentExternal minifym genFileName Settings.staticDir (StaticR . flip StaticRoute [])
+      where
+        -- Generate a unique filename based on the content itself
+        genFileName lbs
+            | development = "autogen-" ++ base64md5 lbs
+            | otherwise   = base64md5 lbs
 
     -- Place Javascript at bottom of the body tag so the rest of the page loads first
     jsLoader _ = BottomOfBody
 
--- How to run database actions.
-instance YesodPersist Opelections where
-    type YesodPersistBackend Opelections = SqlPersist
-    runDB f = do
-        master <- getYesod
-        Database.Persist.Store.runPool
-            (persistConfig master)
-            f
-            (connPool master)
+    -- What messages should be logged. The following includes all messages when
+    -- in development, and warnings and errors in production.
+    shouldLog _ _source level =
+        development || level == LevelWarn || level == LevelError
 
-instance YesodAuth Opelections where
-    type AuthId Opelections = UserId
+    makeLogger = return . appLogger
+
+-- How to run database actions.
+instance YesodPersist App where
+    type YesodPersistBackend App = SqlPersistT
+    runDB = defaultRunDB persistConfig connPool
+instance YesodPersistRunner App where
+    getDBRunner = defaultGetDBRunner connPool
+
+instance YesodAuth App where
+    type AuthId App = UserId
 
     -- Where to send a user after successful login
     loginDest _ = RootR
@@ -148,14 +129,28 @@ instance YesodAuth Opelections where
         case x of
             Just (Entity uid _) -> return $ Just uid
             Nothing -> do
-                fmap Just $ insert $ User (credsIdent creds) Nothing
+                fmap Just $ insert User
+                    { userIdent = credsIdent creds
+                    , userPassword = Nothing
+                    }
 
     -- You can add other plugins like BrowserID, email or OAuth here
-    authPlugins _ = [authBrowserId, authGoogleEmail]
+    authPlugins _ = [authBrowserId def, authGoogleEmail]
 
     authHttpManager = httpManager
 
 -- This instance is required to use forms. You can modify renderMessage to
 -- achieve customized and internationalized form validation messages.
-instance RenderMessage Opelections FormMessage where
+instance RenderMessage App FormMessage where
     renderMessage _ _ = defaultFormMessage
+
+-- | Get the 'Extra' value, used to hold data from the settings.yml file.
+getExtra :: Handler Extra
+getExtra = fmap (appExtra . settings) getYesod
+
+-- Note: previous versions of the scaffolding included a deliver function to
+-- send emails. Unfortunately, there are too many different options for us to
+-- give a reasonable default. Instead, the information is available on the
+-- wiki:
+--
+-- https://github.com/yesodweb/yesod/wiki/Sending-email

@@ -5,7 +5,7 @@ Default: &defaults
 Development:
   <<: *defaults
 
-Test:
+Testing:
   database: opelections_test.sqlite3
   <<: *defaults
 
