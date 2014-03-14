@@ -1,0 +1,48 @@
+server {
+    listen  [::]:80;
+
+    server_name  DOMAIN;
+
+    access_log  LOGDIR/access.log;
+
+    location / {
+        proxy_pass  http://localhost:PORT;
+    }
+    location = /robots.txt {
+        root APPDIR/config;
+    }
+    location = /favicon.ico {
+        root APPDIR/config;
+    }
+}
+
+server {
+    listen  [::]:80;
+
+    server_name  static.DOMAIN;
+
+    access_log  LOGDIR/access.log;
+
+    add_header Access-Control-Allow-Origin "*";
+
+    location / {
+        alias APPDIR/static/;
+        try_files $uri @yesod;
+        location /combined {
+            expires 1y;
+        }
+        location /tmp {
+            expires 1y;
+        }
+    }
+    location @yesod {
+        proxy_pass  http://localhost:PORT/static$uri;
+    }
+}
+
+server {
+    listen  [::]:80;
+    server_name www.DOMAIN;
+    access_log  LOGDIR/access.log;
+    return 301 $scheme://DOMAIN$request_uri;
+}
