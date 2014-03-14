@@ -11,7 +11,7 @@
     <div class="table" style="min-width: #{ballotWidth ballot}cm">
         <div>
             <p>
-                Partagez ce bulletin: ^{shareWidget msg url}
+                Partagez ce bulletin: ^{shareWidget MsgShareOpelections url}
             <p>
                 <a id="printButton" href="javascript:print()"><img src="/static/img/printer.png" /> Imprimer
             <p>

@@ -21,9 +21,7 @@ getRootR = do
     url <- getUrl
     defaultLayout $ do
         setTitle $ toHtml host
-        if host == "vote-utile.oy.lc"
-           then $(widgetFile "vote-utile")
-           else $(widgetFile "root")
+        $(widgetFile "root")
 
 
 ballotHead = [hamlet|
@@ -94,8 +92,7 @@ getBallotByIdR ballotId = do
     host <- getHost
     url <- getUrl
     uploads <- getUploadsFromSession
-    let msg = if host == "vote-utile.oy.lc" then MsgShareVoteUtile else MsgShareOpelections
-        ballotIdText = keyToText ballotId
+    let ballotIdText = keyToText ballotId
         ownBallot = ballotIdText `elem` uploads
     defaultLayout $ do
         setTitleI $ MsgBallotByIdTitle ballotIdText

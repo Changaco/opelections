@@ -7,4 +7,3 @@ ImageLoadFailed: Échec du chargement de l'image
 PostRateExceeded: Vous avez atteint la limite d'envois par jour.
 SavedBallots i@Int: Vous avez sauvegardé #{show i} #{plural i "bulletin" "bulletins"}:
 ShareOpelections url@Text: Votez contre le système, votez blanc ! #{url} %23opelections
-ShareVoteUtile url@Text: Votez utile, votez blanc ! #{url}

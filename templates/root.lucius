@@ -1,6 +1,7 @@
-html {
-    background-color: #000;
-    color: #fff;
+#page1 {
+    background-color: #fff33b;
+}
+#page2 {
+    background-color: #55b8ff;
     overflow: auto;
 }
-#share { line-height: 200%; }
