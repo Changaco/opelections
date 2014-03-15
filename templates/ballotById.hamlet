@@ -1,25 +1,23 @@
-<div id="result">
-    $forall i <- enumFromTo 1 $ ballotHowManyToPrint ballot
-        $with isFirst <- eq i 1
-            <div :isFirst:id="render" class="render" style="width: #{ballotWidth ballot}cm; height: #{ballotHeight ballot}cm">
-                <div id="text">#{ballotText ballot}
-                <div id="renderImages">
-                    <span class="valign">
-                    $forall src <- T.lines $ ballotImages ballot
-                        <img src="#{src}" alt="_{MsgImageLoadFailed}" />
-                <div id="genmsg">_{MsgGenerator host}
-    <div class="table" style="min-width: #{ballotWidth ballot}cm">
+<div>
+    $forall _ <- enumFromTo 1 $ ballotHowManyToPrint ballot
+        <div class="ballot" style="width: #{ballotWidth ballot}cm; height: #{ballotHeight ballot}cm">
+            <div id="text">#{ballotText ballot}
+            <div id="renderImages">
+                <span class="valign">
+                $forall src <- T.lines $ ballotImages ballot
+                    <img src="#{src}" alt="_{MsgImageLoadFailed}" />
+            <div id="genmsg">_{MsgGenerator host}
+    <div class="hidden-print table-layout" style="min-width: #{ballotWidth ballot}cm">
         <div>
-            <p>
+            <div>
                 Partagez ce bulletin: ^{shareWidget MsgShareOpelections url}
-            <p>
-                <a id="printButton" href="javascript:print()"><img src="/static/img/printer.png" /> Imprimer
-            <p>
-                <a href="/" class="nav"><img src="/static/img/go-home.png" /> Accueil
-                <a href="/b" class="nav"><img src="/static/img/document-new.png" /> Générateur
+            <div>
+                <button class="btn btn-default" id="printButton">
+                    <span class="glyphicon glyphicon-print"></span> Imprimer
             $if elem ballotIdText uploads
                 <form action="" method="post" id="deleteForm">
-                    <a id="deleteButton"><img src="/static/img/edit-delete.png" /> Supprimer
+                    <button type="submit" class="btn btn-danger" id="printButton">
+                        <span class="glyphicon glyphicon-remove"></span> Supprimer
         $if not $ null uploads
             <div>
                 <div>

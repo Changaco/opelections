@@ -1,4 +1,3 @@
 $(function () {
-    $('#printButton').button().click(function () {window.print()});
-    $('#deleteButton').button().click(function () {$('#deleteForm').submit()});
+    $('#printButton').click(function () {window.print()});
 });

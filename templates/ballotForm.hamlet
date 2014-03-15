@@ -1,50 +1,86 @@
 <noscript>Cet outil nécessite JavaScript
 
-<div id="mainformWrapper" style="display: none">
-    <form id="mainform" action="" method="post">
+<div class="modal fade" id="addimageModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Ajouter une autre image
+            <form id="addimageForm" class="modal-body">
+                <label>Ajouter une image distante: <input type="text" id="add-dist" placeholder="Entrez l'URL de l'image à ajouter" />
+                <label>Ajouter une image locale: <input type="file" id="add-local" />
+                <input type="hidden" id="addedImages" />
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Annuler
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        onclick="javascript:addimageSubmit()">
+                    OK
+
+<div class="modal fade" id="previewModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="ballot" class="ballot">
+                <div id="text">
+                <div id="renderImages"><span class="valign">
+                <div id="genmsg">_{MsgGenerator host}
+            <div class="hidden-print">
+                <button class="btn btn-default" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-edit"></span> Modifier
+                <button class="btn btn-default" data-dismiss="modal"
+                        data-toggle="modal" data-target="#shareConfirmModal">
+                    <span class="glyphicon glyphicon-save"></span> Sauvegarder
+                <button class="btn btn-default" id="printButton">
+                    <span class="glyphicon glyphicon-print"></span> Imprimer
+
+<div class="modal fade" id="shareConfirmModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Le bulletin que vous avez créé va être envoyé sur notre serveur.
+                <p>Le nombre de bulletins que vous pouvez sauvegarder est limité.
+                <p>Êtes-vous sûr de vouloir publier ce bulletin ?
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Annuler
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        onclick="javascript:$('#mainform').submit()">
+                    <span class="glyphicon glyphicon-upload"></span> Publier
+
+<div class="hidden-print" id="mainformWrapper" style="display: none">
+    <form class="form-inline" id="mainform" action="" method="post">
         <fieldset>
             <legend>Texte du bulletin
-            <textarea type="text" id="text-input" name="text" lines="3">
+            <textarea class="form-control" id="text-input" name="text" rows="3">
 
         <fieldset>
-            <legend>Images à ajouter sur le bulletin (cliquez pour sélectionner, glissez pour ordonner)
+            <legend>Image à ajouter sur le bulletin (cliquez pour sélectionner)
             <input type="hidden" id="selectedImages" name="images" />
             <div id="imagesSelect">
-            <a id="addimageButton"><img src="/static/img/list-add.png" /> Ajouter une autre image
+            <button type="button" class="btn btn-default"
+                    data-toggle="modal" data-target="#addimageModal">
+                <span class="glyphicon glyphicon-plus"></span> Ajouter une autre image
 
         <fieldset id="printOptions">
             <legend>Mise en page
-            <label>Largeur d'un bulletin: <input id="render-width" name="width" type="text" value="16"/>cm
+            <div class="form-group">
+                <label for="ballot-width">Largeur d'un bulletin:
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" id="ballot-width" name="width" type="text" value="16"/>
+                        <span class="input-group-addon">cm</span>
             <br />
-            <label>Hauteur d'un bulletin: <input id="render-height" name="height" type="text" value="11"/>cm
+            <div class="form-group">
+                <label for="ballot-height">Hauteur d'un bulletin:
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" id="ballot-height" name="height" type="text" value="11"/>
+                        <span class="input-group-addon">cm</span>
             <br />
-            <label>Nombre de bulletins par page: <input id="howManyToPrint" name="howManyToPrint" type="text" value="2"/>
+            <div class="form-group">
+                <label for="howManyToPrint">Nombre de bulletins par page:
+                <input class="form-control" id="howManyToPrint" name="howManyToPrint" type="text" value="2"/>
 
         <input type="hidden" name="imgWidth" />
         <input type="hidden" name="imgHeight" />
 
-        <div class="table" style="min-width: 100%;">
-            <div>
-                <p><a id="mainformButton">OK</a>
-                <p><a href="/" class="nav"><img src="/static/img/go-home.png" /> Accueil</a>
-
-<div id="result" style="display: none">
-    <div id="render" class="render">
-        <div id="text">
-        <div id="renderImages"><span class="valign">
-        <div id="genmsg">_{MsgGenerator host}
-    <a id="editButton"><img src="/static/img/accessories-text-editor.png" /> Modifier
-    <a id="shareButton"><img src="/static/img/thumb-up.png" /> Partager
-    <a id="printButton"><img src="/static/img/printer.png" /> Imprimer
-
-
-<div id="dialogs" style="display: none">
-    <form id="addimageForm" title="Ajouter une autre image">
-        <label>Ajouter une image distante: <input type="text" id="add-dist" placeholder="Entrez l'URL de l'image à ajouter" />
-        <label>Ajouter une image locale: <input type="file" id="add-local" />
-        <input type="hidden" id="addedImages" />
-
-    <div id="shareConfirm">
-        <p>Le bulletin que vous avez créé va être envoyé sur notre serveur pour que vous puissiez le partager facilement.
-        <p>Le nombre de bulletins que vous pouvez sauvegarder est limité.
-        <p>Êtes-vous sûr de vouloir partager ce bulletin ?
+        <button type="button" class="btn btn-primary" id="mainformButton">
+            Prévisualiser

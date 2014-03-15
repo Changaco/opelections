@@ -1,44 +1,85 @@
-html { font-family: sans-serif; font-size: 14px; }
 img, .valign { vertical-align: middle; }
 .valign { display: inline-block; width: 0; height: 100%; }
 a { text-decoration: none; }
-fieldset { margin-bottom: 10px; border: 1px dotted #000; }
+fieldset { margin-bottom: 10px; }
 h1 { text-align: center; }
 p { text-align: justify; }
 
 #message { text-align: center; background-color: #91ed3e; padding: 5px; }
 
-html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
-#mainformWrapper, #result { min-height: 100%; overflow: auto; }
-#mainform, #render { margin-top: 10px; }
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+#mainformWrapper { min-height: 100%; overflow: auto; }
 #mainformWrapper { background-color: #ddd; }
-#result {
+#previewModal {
+    text-align: center;
+}
+#previewModal .modal-dialog {
+    display: inline-block;
+    width: auto;
+}
+#previewModal .modal-content {
     background-color: #83d638;
+    padding: 10px;
     text-align: center;
 }
 .text-page {
     margin-left: auto;
     margin-right: auto;
-    width: 1000px;
-    padding-bottom: 3em;
+    padding-bottom: 2em;
+    padding-top: 2em;
 }
-:first-child > .text-page { padding-top: 3em; }
 
-#mainform { width: 750px; margin-left: auto; margin-right: auto; }
-.render {
-    background-color: #fff;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid #000;
-    margin: 0 auto 5px;
+.shareLink {
+    display: inline-block;
+    margin-left: 10px;
 }
-.render { display: none; }
-#render { display: block; }
-.table { margin: auto; text-align: center; display: table; }
-.table > div { display: table-row; }
-.table > div > * { display: table-cell; padding-right: 3em; }
-.table > div > :last-child { text-align: right; padding-right: 0; }
-.table > div > :first-child { text-align: left; }
+.shareLink:hover {
+    text-decoration: none;
+}
+
+#mainform {
+    background-color: #fff;
+    margin: 10px auto;
+    max-width: 750px;
+    padding: 20px;
+}
+.ballot {
+    background-color: #fff;
+    border: 1px solid #000;
+    display: none;
+    margin: 0 auto 5px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+.ballot:first-child {
+    display: block;
+}
+
+.table-layout {
+    display: table;
+    margin: auto;
+    text-align: center;
+}
+.table-layout > div {
+    display: table-row;
+}
+.table-layout > div > div {
+    display: table-cell;
+    padding-right: 3em;
+}
+.table-layout > div > :last-child {
+    padding-right: 0;
+    text-align: right;
+}
+.table-layout > div > :first-child {
+    text-align: left;
+}
 
 #text { font-size: 150%; font-weight: bold; white-space: pre-line; }
 #genmsg {
@@ -60,15 +101,36 @@ html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
 }
 #imagesSelect > img:hover { border: 1px solid #977; }
 #imagesSelect > img.selected { border: 2px solid #1f1; margin: 0 5px 5px 0; }
-#printOptions input { width: 2em; }
+#printOptions input, #printOptions .input-group-addon {
+    padding: 2px 5px;
+    text-align: center;
+}
+#printOptions input {
+    height: 25px;
+    margin-left: 5px;
+    width: 3em;
+}
+#printOptions label {
+    line-height: 30px;
+}
 #add-dist { width: 400px; }
 #text-input { width: 100%; }
 #renderImages > img { margin: 5px; }
 #shareDialog > img { cursor: pointer; }
 
-#share { float: right; text-align: right; margin-top: 3em; }
-#examples { float: left; }
-#examples img { float: left; margin-right: 5px; }
+#share, #examples {
+    margin-top: 3em;
+}
+#share {
+    float: right;
+}
+#examples {
+    float: left;
+}
+#examples img {
+    float: left;
+    margin-right: 5px;
+}
 
 .nav {
     display: inline-block;
@@ -80,6 +142,13 @@ html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
     background-color: #fff;
 }
 
-.ui-button { margin: 5px 5px 5px 0; }
-
-.clearer { display: block; clear: both; }
+@media print {
+    #previewModal .modal-content {
+        border: none !important;
+        padding: 0 !important;
+    }
+    .ballot {
+        display: inline-block !important;
+        margin: 1mm !important;
+    }
+}

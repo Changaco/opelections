@@ -23,18 +23,11 @@ getRootR = do
         $(widgetFile "root")
 
 
-ballotHead = [hamlet|
-    <link rel="stylesheet" type="text/css" href="/static/css/ui-lightness/jquery-ui-1.8.17.custom.css" media="screen, projection" />
-    <script type="text/javascript" src="/static/js/jquery-1.7.1.min.js">
-    <script type="text/javascript" src="/static/js/jquery-ui-1.8.17.custom.min.js">
-|]
-
 getBallotFormR :: Handler Html
 getBallotFormR = do
     host <- getHost
     defaultLayout $ do
         setTitleI MsgBallotFormTitle
-        toWidgetHead ballotHead
         $(widgetFile "ballotForm")
 
 postBallotFormR :: Handler Html
@@ -95,7 +88,6 @@ getBallotByIdR ballotId = do
         ownBallot = ballotIdText `elem` uploads
     defaultLayout $ do
         setTitleI $ MsgBallotByIdTitle ballotIdText
-        toWidgetHead ballotHead
         toWidgetHead [hamlet|
             <style>
                 #renderImages > img {

@@ -73,7 +73,13 @@ instance Yesod App where
 
         pc <- widgetToPageContent $ do
             $(combineStylesheets 'StaticR
-                [ css_normalize_css
+                [ css_bootstrap_css
+                , css_bootstrap_theme_css
+                , css_font_awesome_css
+                ])
+            $(combineScripts 'StaticR
+                [ js_jquery_js
+                , js_bootstrap_js
                 ])
             $(widgetFile "default-layout")
         giveUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")

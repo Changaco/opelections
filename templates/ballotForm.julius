@@ -1,62 +1,50 @@
 
 defaultImages = [{src: '/static/img/marianne.jpg'},
-                 {src: '/static/img/nonmerci.jpg'},
                  {src: '/static/img/guy-fawkes-mask.png', title: 'CC-By-NC-SA http://vanda10.deviantart.com/art/Guy-Fawkes-mask-210523293'}];
 
 $(function () {
     $('#mainformWrapper').show();
-    $('#mainformButton').button().click(mainformSubmit);
-    $('#editButton').button().click(function () {$('#result').hide(); $('#mainformWrapper').show()});
-    $('#shareButton').button().click(function () {$('#shareConfirm').dialog('open')});
-    $('#printButton').button().click(function () {window.print()});
-    $('#addimageForm').dialog({autoOpen: false, width: 430, buttons: {'OK': addimageSubmit}});
-    $('#addimageButton').button().click(function () {form = $('#addimageForm'); form.dialog('open'); form[0].reset()});
-    $('#shareConfirm').dialog({autoOpen: false, width: 430, modal: true, buttons: {'Envoyer': function () {$('#mainform').submit()}, 'Annuler': function () {$(this).dialog('close')}}});
-    images = $('#imagesSelect');
-    images.sortable({distance: 15});
+    $('#mainformButton').click(mainformSubmit);
+    $('#printButton').click(function () {window.print()});
     addedImages = $('#addedImages')[0].value.split('\n').map(function (url) {return {src: url}});
     imagesToAdd = defaultImages.concat(addedImages);
     for (i=0; i<imagesToAdd.length; i++) {
         img = imagesToAdd[i];
-        selected = ($('#selectedImages')[0].value.search(img.src) != -1);
+        selected = ($('#selectedImages').val().indexOf(img.src) != -1);
         addimg(img, selected);
     }
 });
 
 function mainformSubmit (e) {
-    $('#result').show();
+    $('#previewModal').modal();
     $('#text').text($('#text-input')[0].value);
     // set size
-    $('#render').width($('#render-width')[0].value+'cm');
-    $('#render').height($('#render-height')[0].value+'cm');
+    $('#ballot').width($('#ballot-width')[0].value+'cm');
+    $('#ballot').height($('#ballot-height')[0].value+'cm');
     // add selected images
     selected = $('#imagesSelect > .selected');
     n = selected.length;
     $('#renderImages > img').remove();
     selected.clone().appendTo($('#renderImages'));
-    img_width = $('#render').width() / n - n * 10;
-    img_height = $('#render').height() - $('#text').outerHeight(true) - $('#genmsg').outerHeight(true) - 10;
+    img_width = $('#ballot').width() / n - n * 10;
+    img_height = $('#ballot').height() - $('#text').outerHeight(true) - $('#genmsg').outerHeight(true) - 10;
     $('[name=imgWidth]')[0].value = img_width;
     $('[name=imgHeight]')[0].value = img_height;
     $('#renderImages').height(img_height);
-    imgs = $('#renderImages > img');
-    $('#selectedImages')[0].value = '';
-    for (i=0; i<imgs.length; i++) {
-        imgs[i].style.maxWidth = img_width+'px';
-        imgs[i].style.maxHeight = img_height+'px';
-        $('#selectedImages')[0].value += imgs[i].src + '\n';
+    for (var i=0; i<selected.length; i++) {
+        selected[i].style.maxWidth = img_width+'px';
+        selected[i].style.maxHeight = img_height+'px';
     }
     // add hidden copies for printing
-    $('.render:not(#render)').remove();
+    $('.ballot:not(#ballot)').remove();
+    var parent = $('#ballot').parent();
     for (i=1; i<$('#howManyToPrint')[0].value; i++) {
-        a = $('#render').clone().appendTo($('#result'));
+        a = $('#ballot').clone().appendTo(parent);
         a[0].id = '';
     }
-    $('#result').show(); $('#mainformWrapper').hide();
 }
 
 function addimageSubmit (e) {
-    $('#addimageForm').dialog('close');
     files = $('#add-local')[0].files;
     for (i=0; i<files.length; i++) {
         if (files[i].type.indexOf('image') === -1) continue;
@@ -73,7 +61,16 @@ function addimageSubmit (e) {
 function addimg (attrs, selected) {
     if (attrs.src == '') return false;
     attrs['alt'] = 'Impossible de charger l\'image';
-    img = $('<img>').attr(attrs).click(function () {$(this).toggleClass('selected')});
+    var img = $('<img>').attr(attrs);
+    img.click(function () {
+        $(this).toggleClass('selected');
+        var imgs = $('#imagesSelect > .selected');
+        var newValue = '';
+        for (var i=0; i<imgs.length; i++) {
+            newValue += imgs[i].src + '\n';
+        }
+        $('#selectedImages').val(newValue);
+    });
     if (selected) img.addClass('selected');
     if (defaultImages.indexOf(attrs) == -1) $('#addedImages')[0].value += img[0].src + '\n';
     $('#imagesSelect').append(img);
