@@ -15,8 +15,8 @@
         <p id="share"><b>Faites passer le mot:</b> ^{shareWidget MsgShareOpelections url}
 
         <p id="examples">
-            $forall i <- enumFromTo one 2
-                <a href="b/#{show i}"><img src="static/img/bulletin-#{show i}-r.png">
+            <a href="b/10"><img src="static/img/ballot-10-r.png">
+            <a href="b/11"><img src="static/img/ballot-11-r.png">
 
         <span class="clearfix">
 
