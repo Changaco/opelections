@@ -17,10 +17,9 @@ errorPage status errorMessage = do
 
 getRootR :: Handler Html
 getRootR = do
-    host <- getHost
     url <- getUrl
     defaultLayout $ do
-        setTitle $ toHtml host
+        setTitle "OpElections"
         $(widgetFile "root")
 
 
