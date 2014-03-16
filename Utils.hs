@@ -27,9 +27,6 @@ getClientIP = fromJust <$> lookup "X-Real-IP" <$> requestHeaders <$> waiRequest
 getHost = decodeUtf8 <$> fromJust <$> requestHeaderHost <$> waiRequest
 
 getUrl = do
-    host <- getHost
     renderer <- getUrlRender
     maybeRoute <- getCurrentRoute
-    case maybeRoute of
-         Just r -> return $ "http://" <> host <> renderer r
-         Nothing -> return ""
+    return $ "http:" <> renderer (fromJust maybeRoute)
