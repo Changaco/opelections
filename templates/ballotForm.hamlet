@@ -6,8 +6,12 @@
             <div class="modal-header">
                 <h4 class="modal-title">Ajouter une autre image
             <form id="addimageForm" class="modal-body">
-                <label>Ajouter une image distante: <input type="text" id="add-dist" placeholder="Entrez l'URL de l'image à ajouter" />
-                <label>Ajouter une image locale: <input type="file" id="add-local" />
+                <label for="addRemoteImage">Ajouter une image distante:
+                <input class="form-control" type="text" id="addRemoteImage"
+                       placeholder="Entrez l'URL de l'image à ajouter" />
+                <br />
+                <label for="addLocalImage">Ajouter une image locale:
+                <input type="file" id="addLocalImage" />
                 <input type="hidden" id="addedImages" />
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">

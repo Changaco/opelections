@@ -1,10 +1,12 @@
 <div id="page1">
     <div class="container text-page">
-        <h1>#OpElections 2.0
+        <h1>#OpElections
 
-        <p>Si comme nous vous ne voulez soutenir aucun candidat aux élections qui approchent, nous vous proposons d'exprimer votre rejet d'une manière plus explicite que l'abstention ou un bulletin totalement blanc.
+        <p>Vous ne voulez soutenir aucun candidat aux élections qui approchent ?
 
-        <p>Notre <a href=@{BallotFormR}>générateur de bulletin de vote</a> vous permet de créer facilement un bulletin anonyme contenant un court texte expliquant votre choix de voter "blanc".
+        <p>Nous vous proposons d'exprimer votre rejet d'une manière plus explicite que l'abstention et le vote blanc classique.
+
+        <p>Notre <a href=@{BallotFormR}>générateur de bulletin de vote</a> vous permet de créer facilement un bulletin anonyme expliquant brièvement votre choix de voter "blanc".
 
         <p id="share"><b>Partager cette page:</b> ^{shareWidget MsgShareOpelections url}
 

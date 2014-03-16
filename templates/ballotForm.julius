@@ -41,14 +41,14 @@ function mainformSubmit (e) {
 }
 
 function addimageSubmit (e) {
-    files = $('#add-local')[0].files;
+    files = $('#addLocalImage')[0].files;
     for (i=0; i<files.length; i++) {
         if (files[i].type.indexOf('image') === -1) continue;
         reader = new FileReader();
         reader.readAsDataURL(files[i]);
         reader.onload = function (ev) {addimg({src: ev.target.result}, true)};
     }
-    url = $('#add-dist')[0].value;
+    url = $('#addRemoteImage')[0].value;
     if (url.length > 0) {
         addimg({src: url}, true);
     }

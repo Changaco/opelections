@@ -113,7 +113,6 @@ html, body {
 #printOptions label {
     line-height: 30px;
 }
-#add-dist { width: 400px; }
 #text-input { width: 100%; }
 #renderImages > img { margin: 5px; }
 #shareDialog > img { cursor: pointer; }
