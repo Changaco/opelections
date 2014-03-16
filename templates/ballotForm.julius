@@ -1,13 +1,9 @@
 
-defaultImages = [{src: '/static/img/marianne.jpg'},
-                 {src: '/static/img/guy-fawkes-mask.png', title: 'CC-By-NC-SA http://vanda10.deviantart.com/art/Guy-Fawkes-mask-210523293'}];
-
 $(function () {
     $('#mainformWrapper').show();
     $('#mainformButton').click(mainformSubmit);
     $('#printButton').click(function () {window.print()});
-    addedImages = $('#addedImages')[0].value.split('\n').map(function (url) {return {src: url}});
-    imagesToAdd = defaultImages.concat(addedImages);
+    imagesToAdd = $('#addedImages')[0].value.split('\n').map(function (url) {return {src: url}});
     for (i=0; i<imagesToAdd.length; i++) {
         img = imagesToAdd[i];
         selected = ($('#selectedImages').val().indexOf(img.src) != -1);
@@ -72,6 +68,8 @@ function addimg (attrs, selected) {
         $('#selectedImages').val(newValue);
     });
     if (selected) img.addClass('selected');
-    if (defaultImages.indexOf(attrs) == -1) $('#addedImages')[0].value += img[0].src + '\n';
+    addedImages = $('#addedImages')[0];
+    src = img[0].src;
+    if (addedImages.value.indexOf(src) == -1) addedImages.value += src + '\n';
     $('#imagesSelect').append(img);
 }

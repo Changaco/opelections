@@ -52,12 +52,12 @@
             <textarea class="form-control" id="text-input" name="text" rows="3">
 
         <fieldset>
-            <legend>Image à ajouter sur le bulletin (cliquez pour sélectionner)
+            <legend>Image à ajouter sur le bulletin
             <input type="hidden" id="selectedImages" name="images" />
             <div id="imagesSelect">
             <button type="button" class="btn btn-default"
                     data-toggle="modal" data-target="#addimageModal">
-                <span class="glyphicon glyphicon-plus"></span> Ajouter une autre image
+                <span class="glyphicon glyphicon-plus"></span> Ajouter une image
 
         <fieldset id="printOptions">
             <legend>Mise en page
