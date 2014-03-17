@@ -2,7 +2,10 @@ img, .valign { vertical-align: middle; }
 .valign { display: inline-block; width: 0; height: 100%; }
 a { text-decoration: none; }
 fieldset { margin-bottom: 10px; }
-h1 { text-align: center; }
+h1 {
+    text-align: center;
+    margin-bottom: 1em;
+}
 p { text-align: justify; }
 
 #message { text-align: center; background-color: #91ed3e; padding: 5px; }
@@ -143,6 +146,7 @@ html, body {
 
 #page1 {
     background-color: #fff33b;
+    font-size: 16px;
 }
 #page2 {
     background-color: #55b8ff;
