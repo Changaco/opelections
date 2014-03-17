@@ -1,7 +1,12 @@
 img, .valign { vertical-align: middle; }
 .valign { display: inline-block; width: 0; height: 100%; }
 a { text-decoration: none; }
-fieldset { margin-bottom: 10px; }
+fieldset {
+    margin-bottom: 20px;
+}
+legend {
+    margin-bottom: 10px;
+}
 h1 {
     text-align: center;
     margin-bottom: 1em;

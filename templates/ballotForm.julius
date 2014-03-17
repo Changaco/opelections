@@ -3,6 +3,41 @@ $(function () {
     $('#mainformWrapper').show();
     $('#mainformButton').click(mainformSubmit);
     $('#printButton').click(function () {window.print()});
+
+    // add quotes
+    quotes = [
+        {
+            text: "Le pire des maux est que le pouvoir soit occupé par ceux qui l'ont voulu.",
+            author: "Platon",
+        },
+        {
+            text: "Le suffrage par le sort est de la nature de la démocratie. Le suffrage par le choix est celle de l'aristocratie.",
+            author: "Montesquieu",
+        },
+        {
+            text: "Ce n'est pas être souverain que d'élire de temps en temps quelques représentants.",
+            author: "Robespierre",
+        },
+        {
+            text: "Si les élections pouvaient changer quoi que ce soit, il y a longtemps qu'elles auraient été supprimées.",
+            author: "Coluche",
+        },
+        {
+            text: "Il est de l'intérêt des puissants que de faire croire au peuple qu'il est en démocratie.",
+            author: "Hervé Kempf",
+        },
+    ];
+    chooseQuoteForm = $('#chooseQuoteForm');
+    for (i=0; i<quotes.length; i++) {
+        quote = quotes[i];
+        div = $('<div class="radio" />').appendTo(chooseQuoteForm);
+        label = $('<label>');
+        label.append($('<input type="radio" name="quote" />'));
+        label.append(' « '+quote.text+' » '+quote.author);
+        div.append(label);
+    }
+
+    // add images
     imagesToAdd = $('#addedImages')[0].value.split('\n').map(function (url) {return {src: url}});
     for (i=0; i<imagesToAdd.length; i++) {
         img = imagesToAdd[i];
@@ -72,4 +107,9 @@ function addimg (attrs, selected) {
     src = img[0].src;
     if (addedImages.value.indexOf(src) == -1) addedImages.value += src + '\n';
     $('#imagesSelect').append(img);
+}
+
+function chooseQuoteSubmit (e) {
+    newText = $('input[name="quote"]:checked').parent().text().trim();
+    $('#text-input').val(newText);
 }

@@ -49,11 +49,29 @@
                         onclick="javascript:$('#mainform').submit()">
                     <span class="glyphicon glyphicon-upload"></span> Publier
 
+<div class="modal fade" id="chooseQuoteModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Choisir une citation
+            <div class="modal-body">
+                <form id="chooseQuoteForm">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Annuler
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        onclick="javascript:chooseQuoteSubmit()">
+                    OK
+
 <div class="hidden-print" id="mainformWrapper" style="display: none">
     <form class="form-inline" id="mainform" action="" method="post">
         <fieldset>
             <legend>Texte du bulletin
-            <textarea class="form-control" id="text-input" name="text" rows="3">
+            <textarea class="form-control" id="text-input" name="text" rows="2">
+            <div class="help-block">
+                <button type="button" class="btn btn-default"
+                        data-toggle="modal" data-target="#chooseQuoteModal">
+                    Utiliser une citation
 
         <fieldset>
             <legend>Image à ajouter sur le bulletin
