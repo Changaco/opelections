@@ -5,7 +5,7 @@ $(function () {
     $('#printButton').click(function () {window.print()});
 
     // add quotes
-    quotes = [
+    var quotes = [
         {
             text: "Le pire des maux est que le pouvoir soit occupé par ceux qui l'ont voulu.",
             author: "Platon",
@@ -27,21 +27,21 @@ $(function () {
             author: "Hervé Kempf",
         },
     ];
-    chooseQuoteForm = $('#chooseQuoteForm');
-    for (i=0; i<quotes.length; i++) {
-        quote = quotes[i];
-        div = $('<div class="radio" />').appendTo(chooseQuoteForm);
-        label = $('<label>');
+    var chooseQuoteForm = $('#chooseQuoteForm');
+    for (var i=0; i<quotes.length; i++) {
+        var quote = quotes[i];
+        var div = $('<div class="radio" />').appendTo(chooseQuoteForm);
+        var label = $('<label>');
         label.append($('<input type="radio" name="quote" />'));
         label.append(' « '+quote.text+' » '+quote.author);
         div.append(label);
     }
 
     // add images
-    imagesToAdd = $('#addedImages')[0].value.split('\n').map(function (url) {return {src: url}});
-    for (i=0; i<imagesToAdd.length; i++) {
-        img = imagesToAdd[i];
-        selected = ($('#selectedImages').val().indexOf(img.src) != -1);
+    var imagesToAdd = $('#addedImages')[0].value.split('\n').map(function (url) {return {src: url}});
+    for (var i=0; i<imagesToAdd.length; i++) {
+        var img = imagesToAdd[i];
+        var selected = ($('#selectedImages').val().indexOf(img.src) != -1);
         addimg(img, selected);
     }
 });
@@ -53,8 +53,8 @@ function mainformSubmit (e) {
     $('#ballot').width($('#ballot-width')[0].value+'cm');
     $('#ballot').height($('#ballot-height')[0].value+'cm');
     // add selected images
-    selected = $('#imagesSelect > .selected');
-    n = selected.length;
+    var selected = $('#imagesSelect > .selected');
+    var n = selected.length;
     $('#renderImages > img').remove();
     selected.clone().appendTo($('#renderImages'));
     img_width = $('#ballot').width() / n - n * 10;
@@ -62,28 +62,28 @@ function mainformSubmit (e) {
     $('[name=imgWidth]')[0].value = img_width;
     $('[name=imgHeight]')[0].value = img_height;
     $('#renderImages').height(img_height);
-    for (var i=0; i<selected.length; i++) {
+    for (var i=0; i<n; i++) {
         selected[i].style.maxWidth = img_width+'px';
         selected[i].style.maxHeight = img_height+'px';
     }
     // add hidden copies for printing
     $('.ballot:not(#ballot)').remove();
     var parent = $('#ballot').parent();
-    for (i=1; i<$('#howManyToPrint')[0].value; i++) {
-        a = $('#ballot').clone().appendTo(parent);
-        a[0].id = '';
+    for (var i=1; i<$('#howManyToPrint')[0].value; i++) {
+        var ballot = $('#ballot').clone().appendTo(parent);
+        ballot[0].id = '';
     }
 }
 
 function addimageSubmit (e) {
-    files = $('#addLocalImage')[0].files;
-    for (i=0; i<files.length; i++) {
+    var files = $('#addLocalImage')[0].files;
+    for (var i=0; i<files.length; i++) {
         if (files[i].type.indexOf('image') === -1) continue;
-        reader = new FileReader();
+        var reader = new FileReader();
         reader.readAsDataURL(files[i]);
         reader.onload = function (ev) {addimg({src: ev.target.result}, true)};
     }
-    url = $('#addRemoteImage')[0].value;
+    var url = $('#addRemoteImage')[0].value;
     if (url.length > 0) {
         addimg({src: url}, true);
     }
@@ -103,13 +103,13 @@ function addimg (attrs, selected) {
         $('#selectedImages').val(newValue);
     });
     if (selected) img.addClass('selected');
-    addedImages = $('#addedImages')[0];
-    src = img[0].src;
+    var addedImages = $('#addedImages')[0];
+    var src = img[0].src;
     if (addedImages.value.indexOf(src) == -1) addedImages.value += src + '\n';
     $('#imagesSelect').append(img);
 }
 
 function chooseQuoteSubmit (e) {
-    newText = $('input[name="quote"]:checked').parent().text().trim();
+    var newText = $('input[name="quote"]:checked').parent().text().trim();
     $('#text-input').val(newText);
 }
