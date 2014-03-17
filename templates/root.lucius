@@ -1,7 +1,0 @@
-#page1 {
-    background-color: #fff33b;
-}
-#page2 {
-    background-color: #55b8ff;
-    overflow: auto;
-}
