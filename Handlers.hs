@@ -44,6 +44,7 @@ postBallotFormR = do
     ballot <-
         runInputPost $ Ballot
                     <$> ireq textField "text"
+                    <*> ireq textField "secondaryText"
                     <*> ireq textField "images"
                     <*> ireq intField "width"
                     <*> ireq intField "height"

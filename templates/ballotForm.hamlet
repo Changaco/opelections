@@ -61,8 +61,10 @@
     <form class="hidden-print" id="mainform" action="" method="post">
         <fieldset>
             <legend>Texte
-            <textarea class="form-control" id="textInput" name="text"
-                      rows="2" cols="50"
+            <input class="form-control" id="textInput" name="text"
+                   value="CECI EST UN BULLETIN BLANC">
+            <textarea class="form-control" id="secondaryTextInput"
+                      name="secondaryText" rows="2" cols="50"
                       placeholder="Expliquez brièvement pourquoi vous votez blanc. Cliquez sur le bouton ci-dessous pour voir une liste de suggestions.">
             <div class="help-block">
                 <button type="button" class="btn btn-default btn-sm"
@@ -102,8 +104,12 @@
 
     <div id="preview">
         <div id="ballot" class="ballot">
-            <div class="ballotText">
-            <div class="ballotImages"><span class="valign">
+            <div class="ballotWrapper">
+                <div class="ballotTextWrapper">
+                    <div class="ballotText">
+                    <div class="ballotSecondaryText">
+                <div class="ballotImages"><span class="valign">
+            <span class="valign">
             <div class="genmsg">_{MsgGenerator host}
         <div class="hidden-print">
             <button class="btn btn-default"

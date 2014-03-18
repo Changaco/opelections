@@ -99,11 +99,27 @@ html, body {
     text-align: left;
 }
 
+.ballotWrapper {
+    display: inline-block;
+    padding: 10mm 0;
+    vertical-align: middle;
+    width: 96%;
+}
+.ballotTextWrapper {
+    padding-bottom: 10mm;
+}
 .ballotText {
     font-size: 150%;
     font-weight: bold;
-    margin: 3mm;
+    margin-bottom: 10mm;
     white-space: pre-line;
+}
+.ballotSecondaryText {
+    font-size: 110%;
+    white-space: pre-line;
+}
+.ballotSecondaryText:empty {
+    display: none;
 }
 .genmsg {
     bottom: 1mm;
@@ -135,7 +151,12 @@ html, body {
 #printOptions label {
     line-height: 30px;
 }
-#textInput { width: 100%; }
+#textInput, #secondaryTextInput {
+    margin-bottom: 5px;
+}
+#secondaryTextInput {
+    resize: vertical;
+}
 .ballotImages > img { margin: 5px; }
 #shareDialog > img { cursor: pointer; }
 

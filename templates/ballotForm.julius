@@ -2,7 +2,7 @@
 $(function () {
     $('#printButton').click(function () {window.print()});
     $('#mainform textarea').autosize().keyup(updatePreview);
-    $('#mainform input').change(updatePreview);
+    $('#mainform input').change(updatePreview).keyup(updatePreview);
     updatePreview();
 
     // add suggestions
@@ -54,6 +54,7 @@ $(function () {
 function updatePreview (e) {
     $('.ballot:not(#ballot)').remove();
     $('.ballotText').text($('#textInput')[0].value);
+    $('.ballotSecondaryText').text($('#secondaryTextInput')[0].value);
     // set size
     $('#ballot').width($('#ballotWidth')[0].value+'cm');
     $('#ballot').height($('#ballotHeight')[0].value+'cm');
@@ -61,12 +62,14 @@ function updatePreview (e) {
     var selected = $('#imagesSelect > .selected');
     var n = selected.length;
     $('.ballotImages > img').remove();
+    $('.ballotImages').toggle(n != 0);
+    img_width = $('.ballotWrapper').width() / n - n * 10;
+    $('.ballotWrapper')[0].style.height = '100%';
+    img_height = $('.ballotWrapper').height() - $('.ballotTextWrapper').outerHeight(true);
+    $('.ballotWrapper')[0].style.height = 'auto';
     selected.clone().appendTo($('.ballotImages'));
-    img_width = $('#ballot').width() / n - n * 10;
-    img_height = $('#ballot').height() - $('.ballotText').outerHeight(true) - $('.genmsg').outerHeight(true) - 10;
     $('[name=imgWidth]')[0].value = img_width;
     $('[name=imgHeight]')[0].value = img_height;
-    $('.ballotImages').height(img_height);
     var imgs = $('.ballotImages > img');
     for (var i=0; i<imgs.length; i++) {
         imgs[i].style.maxWidth = img_width+'px';
@@ -118,6 +121,6 @@ function addimg (attrs, selected) {
 
 function chooseSuggestionSubmit (e) {
     var newText = $('input[name="suggestion"]:checked').parent().text().trim();
-    $('#textInput').val(newText).trigger('autosize.resize');
+    $('#secondaryTextInput').val(newText).trigger('autosize.resize');
     updatePreview();
 }
