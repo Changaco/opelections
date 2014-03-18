@@ -8,6 +8,12 @@ $(function () {
     // add suggestions
     var suggestions = [
         {
+            text: "Aucun des candidats ne correspond à mes attentes.",
+        },
+        {
+            text: "La hiérarchie c'est comme les étagères.\nPlus c'est haut et moins ça sert.",
+        },
+        {
             text: "Le pire des maux est que le pouvoir soit occupé par ceux qui l'ont voulu.",
             author: "Platon",
         },
