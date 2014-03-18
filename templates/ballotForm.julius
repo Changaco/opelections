@@ -1,7 +1,7 @@
 
 $(function () {
     $('#printButton').click(function () {window.print()});
-    $('#mainform textarea').keyup(updatePreview);
+    $('#mainform textarea').autosize().keyup(updatePreview);
     $('#mainform input').change(updatePreview);
     updatePreview();
 
@@ -114,6 +114,6 @@ function addimg (attrs, selected) {
 
 function chooseQuoteSubmit (e) {
     var newText = $('input[name="quote"]:checked').parent().text().trim();
-    $('#textInput').val(newText);
+    $('#textInput').val(newText).trigger('autosize.resize');
     updatePreview();
 }

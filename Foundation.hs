@@ -81,6 +81,7 @@ instance Yesod App where
                 ])
             $(combineScripts 'StaticR
                 [ js_jquery_js
+                , js_jquery_autosize_js
                 , js_bootstrap_js
                 ])
             $(widgetFile "default-layout")
