@@ -61,7 +61,7 @@
     <form class="hidden-print" id="mainform" action="" method="post">
         <fieldset>
             <legend>Texte
-            <textarea class="form-control" id="text-input" name="text"
+            <textarea class="form-control" id="textInput" name="text"
                       rows="2" cols="50">
             <div class="help-block">
                 <button type="button" class="btn btn-default"
@@ -82,14 +82,14 @@
                 <label for="ballot-width">Largeur d'un bulletin:
                 <div class="form-group">
                     <div class="input-group">
-                        <input class="form-control" id="ballot-width" name="width" type="text" value="16"/>
+                        <input class="form-control" id="ballotWidth" name="width" type="text" value="16"/>
                         <span class="input-group-addon">cm</span>
             <br />
             <div class="form-group">
                 <label for="ballot-height">Hauteur d'un bulletin:
                 <div class="form-group">
                     <div class="input-group">
-                        <input class="form-control" id="ballot-height" name="height" type="text" value="11"/>
+                        <input class="form-control" id="ballotHeight" name="height" type="text" value="11"/>
                         <span class="input-group-addon">cm</span>
             <br />
             <div class="form-group">

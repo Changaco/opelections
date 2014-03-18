@@ -135,7 +135,7 @@ html, body {
 #printOptions label {
     line-height: 30px;
 }
-#text-input { width: 100%; }
+#textInput { width: 100%; }
 .ballotImages > img { margin: 5px; }
 #shareDialog > img { cursor: pointer; }
 

@@ -49,10 +49,10 @@ $(function () {
 
 function updatePreview (e) {
     $('.ballot:not(#ballot)').remove();
-    $('.ballotText').text($('#text-input')[0].value);
+    $('.ballotText').text($('#textInput')[0].value);
     // set size
-    $('#ballot').width($('#ballot-width')[0].value+'cm');
-    $('#ballot').height($('#ballot-height')[0].value+'cm');
+    $('#ballot').width($('#ballotWidth')[0].value+'cm');
+    $('#ballot').height($('#ballotHeight')[0].value+'cm');
     // add selected images
     var selected = $('#imagesSelect > .selected');
     var n = selected.length;
@@ -114,6 +114,6 @@ function addimg (attrs, selected) {
 
 function chooseQuoteSubmit (e) {
     var newText = $('input[name="quote"]:checked').parent().text().trim();
-    $('#text-input').val(newText);
+    $('#textInput').val(newText);
     updatePreview();
 }
