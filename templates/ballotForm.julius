@@ -14,6 +14,14 @@ $(function () {
             text: "La hiérarchie c'est comme les étagères.\nPlus c'est haut et moins ça sert.",
         },
         {
+            text: "Ce n'est pas être souverain que d'élire de temps en temps quelques représentants.",
+            author: "Robespierre",
+        },
+        {
+            text: "Il est de l'intérêt des puissants que de faire croire au peuple qu'il est en démocratie.",
+            author: "Hervé Kempf",
+        },
+        {
             text: "Le pire des maux est que le pouvoir soit occupé par ceux qui l'ont voulu.",
             author: "Platon",
         },
@@ -22,16 +30,8 @@ $(function () {
             author: "Montesquieu",
         },
         {
-            text: "Ce n'est pas être souverain que d'élire de temps en temps quelques représentants.",
-            author: "Robespierre",
-        },
-        {
             text: "Si les élections pouvaient changer quoi que ce soit, il y a longtemps qu'elles auraient été supprimées.",
             author: "Coluche",
-        },
-        {
-            text: "Il est de l'intérêt des puissants que de faire croire au peuple qu'il est en démocratie.",
-            author: "Hervé Kempf",
         },
     ];
     var chooseSuggestionForm = $('#chooseSuggestionForm');
