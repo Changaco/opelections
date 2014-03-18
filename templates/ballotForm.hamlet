@@ -39,18 +39,18 @@
                         onclick="javascript:$('#mainform').submit()">
                     <span class="glyphicon glyphicon-upload"></span> Publier
 
-<div class="modal fade" id="chooseQuoteModal">
+<div class="modal fade" id="chooseSuggestionModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Choisir une citation
+                <h4 class="modal-title">Suggestions
             <div class="modal-body">
-                <form id="chooseQuoteForm">
+                <form id="chooseSuggestionForm">
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                     Annuler
                 <button type="button" class="btn btn-primary" data-dismiss="modal"
-                        onclick="javascript:chooseQuoteSubmit()">
+                        onclick="javascript:chooseSuggestionSubmit()">
                     OK
 
 
@@ -62,11 +62,12 @@
         <fieldset>
             <legend>Texte
             <textarea class="form-control" id="textInput" name="text"
-                      rows="2" cols="50">
+                      rows="2" cols="50"
+                      placeholder="Expliquez brièvement pourquoi vous votez blanc. Cliquez sur le bouton ci-dessous pour voir une liste de suggestions.">
             <div class="help-block">
-                <button type="button" class="btn btn-default"
-                        data-toggle="modal" data-target="#chooseQuoteModal">
-                    Utiliser une citation
+                <button type="button" class="btn btn-default btn-sm"
+                        data-toggle="modal" data-target="#chooseSuggestionModal">
+                    Suggestions
 
         <fieldset>
             <legend>Images
