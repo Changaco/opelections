@@ -47,27 +47,28 @@ $(function () {
 });
 
 function mainformSubmit (e) {
+    $('.ballot:not(#ballot)').remove();
     $('#previewModal').modal();
-    $('#text').text($('#text-input')[0].value);
+    $('.ballotText').text($('#text-input')[0].value);
     // set size
     $('#ballot').width($('#ballot-width')[0].value+'cm');
     $('#ballot').height($('#ballot-height')[0].value+'cm');
     // add selected images
     var selected = $('#imagesSelect > .selected');
     var n = selected.length;
-    $('#renderImages > img').remove();
-    selected.clone().appendTo($('#renderImages'));
+    $('.ballotImages > img').remove();
+    selected.clone().appendTo($('.ballotImages'));
     img_width = $('#ballot').width() / n - n * 10;
-    img_height = $('#ballot').height() - $('#text').outerHeight(true) - $('#genmsg').outerHeight(true) - 10;
+    img_height = $('#ballot').height() - $('.ballotText').outerHeight(true) - $('.genmsg').outerHeight(true) - 10;
     $('[name=imgWidth]')[0].value = img_width;
     $('[name=imgHeight]')[0].value = img_height;
-    $('#renderImages').height(img_height);
-    for (var i=0; i<n; i++) {
-        selected[i].style.maxWidth = img_width+'px';
-        selected[i].style.maxHeight = img_height+'px';
+    $('.ballotImages').height(img_height);
+    var imgs = $('.ballotImages > img');
+    for (var i=0; i<imgs.length; i++) {
+        imgs[i].style.maxWidth = img_width+'px';
+        imgs[i].style.maxHeight = img_height+'px';
     }
     // add hidden copies for printing
-    $('.ballot:not(#ballot)').remove();
     var parent = $('#ballot').parent();
     for (var i=1; i<$('#howManyToPrint')[0].value; i++) {
         var ballot = $('#ballot').clone().appendTo(parent);

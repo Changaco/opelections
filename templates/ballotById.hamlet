@@ -1,12 +1,12 @@
 <div>
     $forall _ <- enumFromTo 1 $ ballotHowManyToPrint ballot
         <div class="ballot" style="width: #{ballotWidth ballot}cm; height: #{ballotHeight ballot}cm">
-            <div id="text">#{ballotText ballot}
-            <div id="renderImages">
+            <div class="ballotText">#{ballotText ballot}
+            <div class="ballotImages">
                 <span class="valign">
                 $forall src <- T.lines $ ballotImages ballot
                     <img src="#{src}" alt="_{MsgImageLoadFailed}" />
-            <div id="genmsg">_{MsgGenerator host}
+            <div class="genmsg">_{MsgGenerator host}
     <div class="hidden-print table-layout" style="min-width: #{ballotWidth ballot}cm">
         <div>
             <div>

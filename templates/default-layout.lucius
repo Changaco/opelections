@@ -98,15 +98,19 @@ html, body {
     text-align: left;
 }
 
-#text { font-size: 150%; font-weight: bold; white-space: pre-line; }
-#genmsg {
-    font-size: 80%;
-    color: #aaa;
-    position: absolute;
-    bottom: 0;
-    right: 0;
+.ballotText {
+    font-size: 150%;
+    font-weight: bold;
+    margin: 3mm;
+    white-space: pre-line;
 }
-#text, #genmsg { margin: 5px; }
+.genmsg {
+    bottom: 1mm;
+    color: #aaa;
+    font-size: 80%;
+    position: absolute;
+    right: 1mm;
+}
 #imagesSelect > img {
     background-color: #fff;
     max-height: 150px;
@@ -131,7 +135,7 @@ html, body {
     line-height: 30px;
 }
 #text-input { width: 100%; }
-#renderImages > img { margin: 5px; }
+.ballotImages > img { margin: 5px; }
 #shareDialog > img { cursor: pointer; }
 
 #share, #examples {

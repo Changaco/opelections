@@ -27,9 +27,9 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div id="ballot" class="ballot">
-                <div id="text">
-                <div id="renderImages"><span class="valign">
-                <div id="genmsg">_{MsgGenerator host}
+                <div class="ballotText">
+                <div class="ballotImages"><span class="valign">
+                <div class="genmsg">_{MsgGenerator host}
             <div class="hidden-print">
                 <button class="btn btn-default" data-dismiss="modal">
                     <span class="glyphicon glyphicon-edit"></span> Modifier

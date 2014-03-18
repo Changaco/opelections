@@ -90,7 +90,7 @@ getBallotByIdR ballotId = do
         setTitleI $ MsgBallotByIdTitle ballotIdText
         toWidgetHead [hamlet|
             <style>
-                #renderImages > img {
+                .ballotImages > img {
                     max-width: #{ballotImgWidth ballot}px;
                     max-height: #{ballotImgHeight ballot}px;
                 }
