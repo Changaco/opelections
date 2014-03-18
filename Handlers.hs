@@ -41,7 +41,7 @@ postBallotFormR = do
        then errorPage serviceUnavailable503 MsgPostRateExceeded
        else return ()
     -- Get form content
-    ballot@(Ballot text images width height howManyToPrint _ _ _ _) <-
+    ballot <-
         runInputPost $ Ballot
                     <$> ireq textField "text"
                     <*> ireq textField "images"
@@ -54,14 +54,10 @@ postBallotFormR = do
                     <*> pure now
     -- Store in DB
     (ballotId, own) <- runDB $ do
-        maybeId <- insertUnique ballot
-        case maybeId of
-             Just i -> return (i, True)
-             Nothing -> do
-                 maybeEntity <- getBy $ UniqueBallot text images width height howManyToPrint
-                 case maybeEntity of
-                      Just e -> return (entityKey e, False)
-                      Nothing -> error "Try again"
+        r <- insertBy ballot
+        case r of
+             Left e -> return (entityKey e, False)
+             Right k -> return (k, True)
     -- Update session
     if own
        then do
