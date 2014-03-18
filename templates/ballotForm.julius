@@ -1,8 +1,9 @@
 
 $(function () {
-    $('#mainformWrapper').show();
-    $('#mainformButton').click(mainformSubmit);
     $('#printButton').click(function () {window.print()});
+    $('#mainform textarea').keyup(updatePreview);
+    $('#mainform input').change(updatePreview);
+    updatePreview();
 
     // add quotes
     var quotes = [
@@ -46,9 +47,8 @@ $(function () {
     }
 });
 
-function mainformSubmit (e) {
+function updatePreview (e) {
     $('.ballot:not(#ballot)').remove();
-    $('#previewModal').modal();
     $('.ballotText').text($('#text-input')[0].value);
     // set size
     $('#ballot').width($('#ballot-width')[0].value+'cm');
@@ -102,15 +102,18 @@ function addimg (attrs, selected) {
             newValue += imgs[i].src + '\n';
         }
         $('#selectedImages').val(newValue);
+        updatePreview();
     });
     if (selected) img.addClass('selected');
     var addedImages = $('#addedImages')[0];
     var src = img[0].src;
     if (addedImages.value.indexOf(src) == -1) addedImages.value += src + '\n';
     $('#imagesSelect').append(img);
+    updatePreview();
 }
 
 function chooseQuoteSubmit (e) {
     var newText = $('input[name="quote"]:checked').parent().text().trim();
     $('#text-input').val(newText);
+    updatePreview();
 }

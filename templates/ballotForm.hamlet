@@ -3,6 +3,9 @@
         <div class="alert alert-danger">
             Cet outil nécessite JavaScript
 
+
+<!-- Modals -->
+
 <div class="modal fade" id="addimageModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -22,22 +25,6 @@
                 <button type="button" class="btn btn-primary" data-dismiss="modal"
                         onclick="javascript:addimageSubmit()">
                     OK
-
-<div class="modal fade" id="previewModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div id="ballot" class="ballot">
-                <div class="ballotText">
-                <div class="ballotImages"><span class="valign">
-                <div class="genmsg">_{MsgGenerator host}
-            <div class="hidden-print">
-                <button class="btn btn-default" data-dismiss="modal">
-                    <span class="glyphicon glyphicon-edit"></span> Modifier
-                <button class="btn btn-default" data-dismiss="modal"
-                        data-toggle="modal" data-target="#shareConfirmModal">
-                    <span class="glyphicon glyphicon-save"></span> Sauvegarder
-                <button class="btn btn-default" id="printButton">
-                    <span class="glyphicon glyphicon-print"></span> Imprimer
 
 <div class="modal fade" id="shareConfirmModal">
     <div class="modal-dialog">
@@ -66,25 +53,30 @@
                         onclick="javascript:chooseQuoteSubmit()">
                     OK
 
-<div class="hidden-print" id="mainformWrapper" style="display: none">
-    <form class="form-inline" id="mainform" action="" method="post">
+
+<!-- Ballot generator -->
+
+<div class="js" id="ballotGenerator">
+
+    <form class="hidden-print" id="mainform" action="" method="post">
         <fieldset>
-            <legend>Texte du bulletin
-            <textarea class="form-control" id="text-input" name="text" rows="2">
+            <legend>Texte
+            <textarea class="form-control" id="text-input" name="text"
+                      rows="2" cols="50">
             <div class="help-block">
                 <button type="button" class="btn btn-default"
                         data-toggle="modal" data-target="#chooseQuoteModal">
                     Utiliser une citation
 
         <fieldset>
-            <legend>Image à ajouter sur le bulletin
+            <legend>Images
             <input type="hidden" id="selectedImages" name="images" />
             <div id="imagesSelect">
             <button type="button" class="btn btn-default"
                     data-toggle="modal" data-target="#addimageModal">
                 <span class="glyphicon glyphicon-plus"></span> Ajouter une image
 
-        <fieldset id="printOptions">
+        <fieldset class="form-inline" id="printOptions">
             <legend>Mise en page
             <div class="form-group">
                 <label for="ballot-width">Largeur d'un bulletin:
@@ -107,5 +99,14 @@
         <input type="hidden" name="imgWidth" />
         <input type="hidden" name="imgHeight" />
 
-        <button type="button" class="btn btn-primary" id="mainformButton">
-            Prévisualiser
+    <div id="preview">
+        <div id="ballot" class="ballot">
+            <div class="ballotText">
+            <div class="ballotImages"><span class="valign">
+            <div class="genmsg">_{MsgGenerator host}
+        <div class="hidden-print">
+            <button class="btn btn-default"
+                    data-toggle="modal" data-target="#shareConfirmModal">
+                <span class="glyphicon glyphicon-save"></span> Sauvegarder
+            <button class="btn btn-default" id="printButton">
+                <span class="glyphicon glyphicon-print"></span> Imprimer

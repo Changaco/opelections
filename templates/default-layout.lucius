@@ -3,6 +3,7 @@ img, .valign { vertical-align: middle; }
 a { text-decoration: none; }
 fieldset {
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 legend {
     margin-bottom: 10px;
@@ -30,20 +31,7 @@ html, body {
     padding: 0;
     width: 100%;
 }
-#mainformWrapper { min-height: 100%; overflow: auto; }
-#mainformWrapper { background-color: #ddd; }
-#previewModal {
-    text-align: center;
-}
-#previewModal .modal-dialog {
-    display: inline-block;
-    width: auto;
-}
-#previewModal .modal-content {
-    background-color: #83d638;
-    padding: 10px;
-    text-align: center;
-}
+
 .text-page {
     margin-left: auto;
     margin-right: auto;
@@ -59,11 +47,24 @@ html, body {
     text-decoration: none;
 }
 
+#ballotGenerator {
+    text-align: center;
+}
+#mainform, #preview {
+    display: inline-block;
+    margin: 10px 0;
+    vertical-align: top;
+}
 #mainform {
     background-color: #fff;
-    margin: 10px auto;
+    border: 1px solid #000;
     max-width: 750px;
-    padding: 20px;
+    padding: 0 20px;
+    text-align: left;
+}
+#preview {
+    margin-left: 10px;
+    text-align: center;
 }
 .ballot {
     background-color: #fff;
@@ -180,10 +181,6 @@ body > .wrapper {
 }
 
 @media print {
-    #previewModal .modal-content {
-        border: none !important;
-        padding: 0 !important;
-    }
     .ballot {
         display: inline-block !important;
         margin: 1mm !important;
