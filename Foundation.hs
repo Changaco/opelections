@@ -71,6 +71,8 @@ instance Yesod App where
         -- value passed to hamletToRepHtml cannot be a widget, this allows
         -- you to use normal widget features in default-layout.
 
+        currentRoute <- getCurrentRoute
+        let routeName = maybe "" (takeWhile (/=' ') . show) currentRoute
         pc <- widgetToPageContent $ do
             $(combineStylesheets 'StaticR
                 [ css_bootstrap_css
