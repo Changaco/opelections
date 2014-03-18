@@ -13,6 +13,10 @@ h1 {
 }
 p { text-align: justify; }
 
+html.no-js .js {
+    display: none !important;
+}
+
 noscript .alert {
     margin-top: 20px;
     text-align: center;
