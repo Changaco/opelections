@@ -1,4 +1,7 @@
-<noscript>Cet outil nécessite JavaScript
+<noscript>
+    <div class="container">
+        <div class="alert alert-danger">
+            Cet outil nécessite JavaScript
 
 <div class="modal fade" id="addimageModal">
     <div class="modal-dialog">

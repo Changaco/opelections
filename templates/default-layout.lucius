@@ -13,6 +13,11 @@ h1 {
 }
 p { text-align: justify; }
 
+noscript .alert {
+    margin-top: 20px;
+    text-align: center;
+}
+
 #message { text-align: center; background-color: #91ed3e; padding: 5px; }
 
 html, body {
