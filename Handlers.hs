@@ -85,13 +85,6 @@ getBallotByIdR ballotId = do
         ownBallot = ballotIdText `elem` uploads
     defaultLayout $ do
         setTitleI $ MsgBallotByIdTitle ballotIdText
-        toWidgetHead [hamlet|
-            <style>
-                .ballotImages > img {
-                    max-width: #{ballotImgWidth ballot}px;
-                    max-height: #{ballotImgHeight ballot}px;
-                }
-        |]
         $(widgetFile "ballotById")
 
 postBallotByIdR :: BallotId -> Handler ()
@@ -105,3 +98,25 @@ postBallotByIdR ballotId = do
            setMessage $ toHtml $ "Bulletin n°" <> ballotIdText <> " supprimé."
            setSession "uploads" $ T.intercalate "," $ filter (/=ballotIdText) uploads
            redirect BallotFormR
+
+
+getBallotListR :: Handler Html
+getBallotListR = do
+    host <- getHost
+    let limit = 10
+    offset <- do
+        maybeOffset <- maybe (Just 0) readMay <$> lookupGetParam "offset"
+        maybe (invalidArgs ["offset"]) return maybeOffset
+    ballots <- runDB $
+        selectList [] [Desc BallotUploadTime, LimitTo limit, OffsetBy offset]
+    totalCount <- runDB $ count [BallotWidth >. 0]
+    when (null ballots && offset /= 0) $ invalidArgs ["offset"]
+    let prevOffset = if offset /= 0
+                     then Just (offset - limit)
+                     else Nothing
+    let nextOffset = if offset + limit < totalCount
+                     then Just (offset + limit)
+                     else Nothing
+    defaultLayout $ do
+        setTitleI MsgBallotListTitle
+        $(widgetFile "ballotList")

@@ -7,3 +7,4 @@
 / RootR GET
 /b BallotFormR GET POST
 /b/#BallotId BallotByIdR GET POST
+/l BallotListR GET

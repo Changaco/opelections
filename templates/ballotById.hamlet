@@ -1,16 +1,8 @@
+<h1>_{MsgBallotByIdTitle ballotIdText}
+
 <div>
     $forall _ <- enumFromTo 1 $ ballotHowManyToPrint ballot
-        <div class="ballot" style="width: #{ballotWidth ballot}cm; height: #{ballotHeight ballot}cm">
-            <div class="ballotWrapper">
-                <div class="ballotTextWrapper">
-                    <div class="ballotText">#{ballotText ballot}
-                    <div class="ballotSecondaryText">#{ballotSecondaryText ballot}
-                <div class="ballotImages">
-                    <span class="valign">
-                    $forall src <- T.lines $ ballotImages ballot
-                        <img src="#{src}" alt="_{MsgImageLoadFailed}" />
-            <span class="valign">
-            <div class="genmsg">_{MsgGenerator host}
+        ^{ballotWidget host ballot}
     <div class="hidden-print table-layout" style="min-width: #{ballotWidth ballot}cm">
         <div>
             <div>

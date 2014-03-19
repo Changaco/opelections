@@ -2,6 +2,28 @@ module Widgets where
 
 import Import
 
+import qualified Data.Text as T
+
+
+ballotWidget :: Text -> Ballot -> Widget
+ballotWidget host Ballot{..} = [whamlet|
+<div class="ballot" style="width: #{ballotWidth}cm; height: #{ballotHeight}cm">
+    <div class="ballotWrapper">
+        <div class="ballotTextWrapper">
+            <div class="ballotText">#{ballotText}
+            <div class="ballotSecondaryText">#{ballotSecondaryText}
+        <div class="ballotImages">
+            <span class="valign">
+            $forall src <- T.lines ballotImages
+                <img src="#{src}" alt="_{MsgImageLoadFailed}"
+                     style="max-height: #{ballotImgHeight}px; max-width: #{ballotImgWidth}px;" />
+    <span class="valign">
+    <div class="genmsg">_{MsgGenerator host}
+|]
+
+
+faqWidget = $(whamletFile "templates/faq.hamlet")
+
 
 icon :: Text -> Text -> Widget
 icon code alt = [whamlet|
@@ -19,9 +41,6 @@ shareWidget msg url = [whamlet|
     <a class="shareLink" href="https://plus.google.com/share?url=#{url}">
         ^{icon "google-plus" "Google+"}
 |]
-
-
-faqWidget = $(whamletFile "templates/faq.hamlet")
 
 
 wikipediaFR :: Text -> Widget

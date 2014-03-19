@@ -9,8 +9,9 @@ legend {
     margin-bottom: 10px;
 }
 h1 {
+    font-size: 30px;
+    margin: 5px 0 15px;
     text-align: center;
-    margin-bottom: 1em;
 }
 p { text-align: justify; }
 
@@ -52,7 +53,7 @@ html, body {
 }
 #mainform, #preview {
     display: inline-block;
-    margin: 10px 0;
+    margin-bottom: 10px;
     vertical-align: top;
 }
 #mainform {
@@ -106,16 +107,17 @@ html, body {
     width: 96%;
 }
 .ballotTextWrapper {
-    padding-bottom: 10mm;
+    padding-bottom: 5mm;
 }
 .ballotText {
     font-size: 150%;
     font-weight: bold;
-    margin-bottom: 10mm;
     white-space: pre-line;
 }
 .ballotSecondaryText {
     font-size: 110%;
+    margin-top: 10mm;
+    padding-bottom: 5mm;
     white-space: pre-line;
 }
 .ballotSecondaryText:empty {
@@ -174,31 +176,42 @@ html, body {
     margin-right: 5px;
 }
 
-.nav {
+body > .wrapper:not(#RootR) {
     display: inline-block;
-    font-weight: bold;
-    padding: .4em 1em;
-    margin-right: 5px;
-    border: 1px #894f1c solid;
-    border-radius: 5px;
-    background-color: #fff;
-}
-
-body > .wrapper {
     min-height: 100%;
-    overflow-y: auto;
+    min-width: 100%;
 }
 #page1 {
     background-color: #fff33b;
     font-size: 16px;
 }
-#page2 {
-    background-color: #55b8ff;
-    overflow: auto;
+#BallotByIdR {
+    background-color: #83d638;
 }
 #BallotFormR {
     background-color: #ddd;
-    padding: 0 10px;
+}
+#BallotListR {
+    background-color: #b17dd6;
+    text-align: center;
+}
+#BallotListR > a.ballotLink, #BallotListR .ballot {
+    color: #000;
+    display: inline-block;
+}
+#RootR h1 {
+    font-size: 36px;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+#RootR {
+    background-color: #55b8ff;
+}
+#RootR #page1 {
+    background-color: #fff33b;
+    font-size: 16px;
+    padding-bottom: 70px;
+    position: relative;
 }
 
 @media print {

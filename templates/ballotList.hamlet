@@ -1,0 +1,12 @@
+<h1>_{MsgBallotListTitle}
+
+$forall (Entity ballotId ballot) <- ballots
+    <a class="ballotLink" href="@{BallotByIdR ballotId}">
+        ^{ballotWidget host ballot}
+$if null ballots
+    <p>_{MsgNoBallotsYet}
+$else
+    $maybe offset <- prevOffset
+        <a href="?offset=#{offset}">← Page précédente
+    $maybe offset <- nextOffset
+        <a href="?offset=#{offset}">Page suivante →

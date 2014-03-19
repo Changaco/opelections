@@ -1,9 +1,3 @@
-<noscript>
-    <div class="container">
-        <div class="alert alert-danger">
-            Cet outil nécessite JavaScript
-
-
 <!-- Modals -->
 
 <div class="modal fade" id="addimageModal">
@@ -55,6 +49,13 @@
 
 
 <!-- Ballot generator -->
+
+<h1>_{MsgBallotFormTitle}
+
+<noscript>
+    <div class="container">
+        <div class="alert alert-danger">
+            Cet outil nécessite JavaScript
 
 <div class="js" id="ballotGenerator">
 

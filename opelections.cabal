@@ -45,6 +45,7 @@ library
                 EmptyDataDecls
                 NoMonomorphismRestriction
                 DeriveDataTypeable
+                RecordWildCards
 
     build-depends: base >= 4 && < 5
                  , blaze-html
