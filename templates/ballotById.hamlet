@@ -6,7 +6,7 @@
     <div class="hidden-print table-layout" style="min-width: #{ballotWidth ballot}cm">
         <div>
             <div>
-                Partagez ce bulletin: ^{shareWidget MsgShareOpelections url}
+                <b>Partagez ce bulletin:</b> ^{shareWidget MsgShareBallot url}
             <div>
                 <button class="btn btn-default" id="printButton">
                     <span class="glyphicon glyphicon-print"></span> Imprimer
