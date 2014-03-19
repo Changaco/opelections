@@ -10,3 +10,5 @@ $else
         <a href="?offset=#{offset}">← Page précédente
     $maybe offset <- nextOffset
         <a href="?offset=#{offset}">Page suivante →
+
+^{navWidget "BallotListR"}

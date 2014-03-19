@@ -32,6 +32,23 @@ icon code alt = [whamlet|
 |]
 
 
+navWidget :: Text -> Widget
+navWidget routeName =
+    let isRootR = routeName == "RootR"
+        isBallotFormR = routeName == "BallotFormR"
+        isBallotListR = routeName == "BallotListR"
+    in  [whamlet|
+<nav id="nav">
+    <ul class="nav nav-pills">
+        <li :isRootR:class="active">
+            <a href="@{RootR}">_{MsgRootR}
+        <li :isBallotFormR:class="active">
+            <a href="@{BallotFormR}">_{MsgBallotFormR}
+        <li :isBallotListR:class="active">
+            <a href="@{BallotListR}">_{MsgBallotListR}
+|]
+
+
 shareWidget :: (RenderMessage App a) => (Text -> a) -> Text -> Widget
 shareWidget msg url = [whamlet|
     <a class="shareLink" href="http://www.facebook.com/sharer.php?u=#{url}&t=_{msg url}">

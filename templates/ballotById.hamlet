@@ -21,3 +21,5 @@
                     <ul>
                         $forall uploadId <- uploads
                             <li><a href="/b/#{uploadId}">Bulletin n°#{uploadId}
+
+^{navWidget "BallotById"}

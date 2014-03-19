@@ -118,3 +118,5 @@
                 <span class="glyphicon glyphicon-save"></span> Sauvegarder
             <button class="btn btn-default" id="printButton">
                 <span class="glyphicon glyphicon-print"></span> Imprimer
+
+^{navWidget "BallotFormR"}

@@ -16,6 +16,8 @@
 
         <span class="clearfix">
 
+    ^{navWidget "RootR"}
+
 <div id="page2">
     <div class="container text-page">
         ^{faqWidget}
