@@ -114,6 +114,9 @@ html, body {
     font-weight: bold;
     white-space: pre-line;
 }
+.ballotText:empty {
+    margin-top: -10mm;
+}
 .ballotSecondaryText {
     font-size: 110%;
     margin-top: 10mm;
