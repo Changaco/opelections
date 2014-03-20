@@ -5,16 +5,16 @@
         ^{ballotWidget host ballot}
     <div class="hidden-print table-layout" style="min-width: #{ballotWidth ballot}cm">
         <div>
-            <div><b>Partagez ce bulletin:</b> ^{shareWidget MsgShareBallot url}
             <div>
                 <button class="btn btn-default" id="printButton">
                     <span class="glyphicon glyphicon-print">
                     Imprimer
-            $if elem ballotIdText uploads
-                <form action="" method="post" id="deleteForm">
-                    <button type="submit" class="btn btn-danger" id="printButton">
-                        <span class="glyphicon glyphicon-remove">
-                        Supprimer
+                $if ownBallot
+                    <form action="" method="post" id="deleteForm">
+                        <button type="submit" class="btn btn-danger" id="printButton">
+                            <span class="glyphicon glyphicon-remove">
+                            Supprimer
+            <div><b>Partagez ce bulletin:</b> ^{shareWidget MsgShareBallot url}
         $if not $ null uploads
             <div>
                 <div>

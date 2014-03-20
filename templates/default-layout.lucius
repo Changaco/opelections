@@ -102,6 +102,10 @@ html, body {
 .table-layout > div > :first-child {
     text-align: left;
 }
+#deleteForm {
+    display: inline-block;
+    margin-left: 10px;
+}
 
 .ballotWrapper {
     display: inline-block;
