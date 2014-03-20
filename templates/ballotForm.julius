@@ -113,21 +113,23 @@ function addimg (attrs, selected) {
     if (attrs.src == '') return false;
     attrs['alt'] = 'Impossible de charger l\'image';
     var img = $('<img>').attr(attrs);
-    img.click(function () {
-        $(this).toggleClass('selected');
-        var imgs = $('#imagesSelect > .selected');
-        var newValue = '';
-        for (var i=0; i<imgs.length; i++) {
-            newValue += imgs[i].src + '\n';
-        }
-        $('#selectedImages').val(newValue);
-        updatePreview();
-    });
-    if (selected) img.addClass('selected');
+    img.click(function () { selectImage($(this)) });
     var addedImages = $('#addedImages')[0];
     var src = img[0].src;
     if (addedImages.value.indexOf(src) == -1) addedImages.value += src + '\n';
     $('#imagesSelect').append(img);
+    if (selected) selectImage(img);
+    updatePreview();
+}
+
+function selectImage (img) {
+    img.toggleClass('selected');
+    var imgs = $('#imagesSelect > .selected');
+    var newValue = '';
+    for (var i=0; i<imgs.length; i++) {
+        newValue += imgs[i].src + '\n';
+    }
+    $('#selectedImages').val(newValue);
     updatePreview();
 }
 
