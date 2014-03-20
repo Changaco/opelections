@@ -69,7 +69,7 @@ function updatePreview (e) {
     var n = selected.length;
     $('.ballotImages > img').remove();
     $('.ballotImages').toggle(n != 0);
-    img_width = $('.ballotWrapper').width() / n - n * 10;
+    img_width = n == 0 ? 0 : $('.ballotWrapper').width() / n - n * 10;
     $('.ballotWrapper')[0].style.height = '100%';
     img_height = $('.ballotWrapper').height() - $('.ballotTextWrapper').outerHeight(true);
     $('.ballotWrapper')[0].style.height = 'auto';

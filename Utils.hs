@@ -4,7 +4,15 @@ import ClassyPrelude
 
 import Data.Maybe
 import Network.Wai
+import Settings.Development
 import Yesod
+
+
+-- * Forms
+
+idef :: Monad m => Field m a -> Text -> a -> FormInput m a
+idef a b d = fromMaybe d <$> iopt a b
+
 
 
 -- * i18n
@@ -22,7 +30,9 @@ eq = (==)
 
 -- * WAI
 
-getClientIP = fromJust <$> lookup "X-Real-IP" <$> requestHeaders <$> waiRequest
+getClientIP = if development
+    then return ""
+    else fromJust <$> lookup "X-Real-IP" <$> requestHeaders <$> waiRequest
 
 getHost = decodeUtf8 <$> fromJust <$> requestHeaderHost <$> waiRequest
 

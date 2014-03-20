@@ -43,14 +43,14 @@ postBallotFormR = do
     -- Get form content
     ballot <-
         runInputPost $ Ballot
-                    <$> ireq textField "text"
-                    <*> ireq textField "secondaryText"
-                    <*> ireq textField "images"
+                    <$> idef textField "text" ""
+                    <*> idef textField "secondaryText" ""
+                    <*> idef textField "images" ""
                     <*> ireq intField "width"
                     <*> ireq intField "height"
                     <*> ireq intField "howManyToPrint"
-                    <*> ireq intField "imgWidth"
-                    <*> ireq intField "imgHeight"
+                    <*> ireq doubleField "imgWidth"
+                    <*> ireq doubleField "imgHeight"
                     <*> pure uploadFrom
                     <*> pure now
     -- Store in DB

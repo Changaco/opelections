@@ -15,8 +15,8 @@ Ballot
     width Int
     height Int
     howManyToPrint Int
-    imgWidth Int
-    imgHeight Int
+    imgWidth Double
+    imgHeight Double
     uploadFrom ByteString
     uploadTime UTCTime
     UniqueBallot text secondaryText images width height howManyToPrint
