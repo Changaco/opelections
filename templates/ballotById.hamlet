@@ -14,7 +14,10 @@
                         <button type="submit" class="btn btn-danger" id="printButton">
                             <span class="glyphicon glyphicon-remove">
                             Supprimer
-            <div><b>Partagez ce bulletin:</b> ^{shareWidget MsgShareBallot url}
+            $if ownBallot
+                <div><b>Partager votre bulletin:</b> ^{shareWidget MsgShareOwnBallot url}
+            $else
+                <div><b>Partager ce bulletin:</b> ^{shareWidget MsgShareBallot url}
         $if not $ null uploads
             <div>
                 <div>

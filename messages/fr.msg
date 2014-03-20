@@ -12,3 +12,4 @@ RootR: Accueil
 SavedBallots i@Int: Vous avez sauvegardé #{show i} #{plural i "bulletin" "bulletins"}:
 ShareBallot url@Text: J'adore ce bulletin de vote: #{url} %23opelections
 ShareOpelections url@Text: Vous allez voter blanc aux élections ? Imprimez votre bulletin via #{url} %23opelections
+ShareOwnBallot url@Text: Je viens de créer un bulletin de vote: #{url} %23opelections
