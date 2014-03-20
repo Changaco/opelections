@@ -51,7 +51,7 @@
 
 <!-- Ballot generator -->
 
-<h1>_{MsgBallotFormTitle}
+<h1 class="hidden-print">_{MsgBallotFormTitle}
 
 <noscript>
     <div class="container">

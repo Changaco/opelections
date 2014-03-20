@@ -1,4 +1,4 @@
-<h1>_{MsgBallotListTitle}
+<h1 class="hidden-print">_{MsgBallotListTitle}
 
 $forall (Entity ballotId ballot) <- ballots
     <a class="ballotLink" href="@{BallotByIdR ballotId}">
@@ -6,9 +6,10 @@ $forall (Entity ballotId ballot) <- ballots
 $if null ballots
     <p>_{MsgNoBallotsYet}
 $else
-    $maybe offset <- prevOffset
-        <a href="?offset=#{offset}">← Page précédente
-    $maybe offset <- nextOffset
-        <a href="?offset=#{offset}">Page suivante →
+    <p class="hidden-print">
+        $maybe offset <- prevOffset
+            <a href="?offset=#{offset}">← Page précédente
+        $maybe offset <- nextOffset
+            <a href="?offset=#{offset}">Page suivante →
 
 ^{navWidget "BallotListR"}

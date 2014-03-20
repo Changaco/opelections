@@ -38,7 +38,7 @@ navWidget routeName =
         isBallotFormR = routeName == "BallotFormR"
         isBallotListR = routeName == "BallotListR"
     in  [whamlet|
-<nav id="nav">
+<nav class="hidden-print" id="nav">
     <ul class="nav nav-pills">
         <li :isRootR:class="active">
             <a href="@{RootR}">_{MsgRootR}

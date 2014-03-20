@@ -1,4 +1,4 @@
-<h1>_{MsgBallotByIdTitle ballotIdText}
+<h1 class="hidden-print">_{MsgBallotByIdTitle ballotIdText}
 
 <div>
     $forall _ <- enumFromTo 1 $ ballotHowManyToPrint ballot

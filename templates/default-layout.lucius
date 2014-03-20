@@ -249,6 +249,12 @@ body > .wrapper:not(#RootR) {
 }
 
 @media print {
+    body > .wrapper, #preview {
+        display: block !important;
+    }
+    a.ballotLink::after {
+        display: none !important;
+    }
     .ballot {
         display: inline-block !important;
         margin: 1mm !important;
