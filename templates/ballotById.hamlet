@@ -18,13 +18,5 @@
                 <div><b>Partager votre bulletin:</b> ^{shareWidget MsgShareOwnBallot url}
             $else
                 <div><b>Partager ce bulletin:</b> ^{shareWidget MsgShareBallot url}
-        $if not $ null uploads
-            <div>
-                <div>
-                    <p id="uploads">_{MsgSavedBallots $ length uploads}
-                    <ul>
-                        $forall uploadId <- uploads
-                            <li>
-                                <a href="/b/#{uploadId}">Bulletin n°#{uploadId}
 
 ^{navWidget "BallotById"}
