@@ -63,8 +63,8 @@
     <form class="hidden-print" id="mainform" action="" method="post">
         <fieldset>
             <legend>Texte
-            <input class="form-control" id="textInput" name="text"
-                   value="CECI EST UN BULLETIN BLANC">
+            <textarea class="form-control" id="textInput" name="text"
+                      rows="1" cols="50">CECI EST UN BULLETIN BLANC
             <textarea class="form-control" id="secondaryTextInput"
                       name="secondaryText" rows="2" cols="50"
                       placeholder="Expliquez brièvement pourquoi vous votez blanc. Cliquez sur le bouton ci-dessous pour voir une liste de suggestions.">
