@@ -6,10 +6,10 @@ $forall (Entity ballotId ballot) <- ballots
 $if null ballots
     <p>_{MsgNoBallotsYet}
 $else
-    <p class="hidden-print">
+    <div class="hidden-print">
         $maybe offset <- prevOffset
-            <a href="?offset=#{offset}">← Page précédente
+            <a class="navLink" href="?offset=#{offset}">← Page précédente
         $maybe offset <- nextOffset
-            <a href="?offset=#{offset}">Page suivante →
+            <a class="navLink" href="?offset=#{offset}">Page suivante →
 
 ^{navWidget "BallotListR"}

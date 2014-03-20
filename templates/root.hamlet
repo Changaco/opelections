@@ -8,15 +8,16 @@
 
         <p>Notre <a href=@{BallotFormR}>générateur de bulletin de vote</a> vous permet de créer facilement un bulletin anonyme expliquant brièvement votre choix de voter "blanc".
 
-        <p id="share"><b>Partager cette page:</b> ^{shareWidget MsgShareOpelections url}
-
-        <p id="examples">
+        <div id="examples">
+            <p>Exemples de bulletins créés avec notre générateur (images à taille réduite):
             <a href="b/10"><img src="static/img/ballot-10-r.png">
             <a href="b/11"><img src="static/img/ballot-11-r.png">
+            <p>
+                <a href="@{BallotListR}">Parcourir la liste complète des bulletins
+
+        <p id="share"><b>Partager cette page:</b> ^{shareWidget MsgShareOpelections url}
 
         <span class="clearfix">
-
-    ^{navWidget "RootR"}
 
 <div id="page2">
     <div class="container text-page">
