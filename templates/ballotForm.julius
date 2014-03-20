@@ -62,24 +62,30 @@ function updatePreview (e) {
     $('.ballotText').text($('#textInput')[0].value);
     $('.ballotSecondaryText').text($('#secondaryTextInput')[0].value);
     // set size
-    $('#ballot').width($('#ballotWidth')[0].value+'cm');
-    $('#ballot').height($('#ballotHeight')[0].value+'cm');
+    ballot_width_cm = $('#ballotWidth')[0].value;
+    ballot_height_cm = $('#ballotHeight')[0].value;
+    $('#ballot')[0].style.width = ballot_width_cm+'cm';
+    $('#ballot')[0].style.height = ballot_height_cm+'cm';
+    ballot_width_px = $('#ballot').width();
+    ballot_height_px = $('#ballot').height();
     // add selected images
     var selected = $('#imagesSelect > .selected');
     var n = selected.length;
     $('.ballotImages > img').remove();
     $('.ballotImages').toggle(n != 0);
-    img_width = n == 0 ? 0 : $('.ballotWrapper').width() / n - n * 10;
+    img_width_px = n == 0 ? 0 : $('.ballotWrapper').width() / n - n * 10;
+    img_width_cm = img_width_px / ballot_width_px * ballot_width_cm;
     $('.ballotWrapper')[0].style.height = '100%';
-    img_height = $('.ballotWrapper').height() - $('.ballotTextWrapper').outerHeight(true);
+    img_height_px = $('.ballotWrapper').height() - $('.ballotTextWrapper').outerHeight(true);
     $('.ballotWrapper')[0].style.height = 'auto';
+    img_height_cm = img_height_px / ballot_height_px * ballot_height_cm;
     selected.clone().appendTo($('.ballotImages'));
-    $('[name=imgWidth]')[0].value = img_width;
-    $('[name=imgHeight]')[0].value = img_height;
+    $('[name=imgWidth]')[0].value = img_width_cm;
+    $('[name=imgHeight]')[0].value = img_height_cm;
     var imgs = $('.ballotImages > img');
     for (var i=0; i<imgs.length; i++) {
-        imgs[i].style.maxWidth = img_width+'px';
-        imgs[i].style.maxHeight = img_height+'px';
+        imgs[i].style.maxWidth = img_width_cm+'cm';
+        imgs[i].style.maxHeight = img_height_cm+'cm';
     }
     // add hidden copies for printing
     var parent = $('#ballot').parent();

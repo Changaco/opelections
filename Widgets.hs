@@ -16,7 +16,7 @@ ballotWidget host Ballot{..} = [whamlet|
             <span class="valign">
             $forall src <- T.lines ballotImages
                 <img src="#{src}" alt="_{MsgImageLoadFailed}"
-                     style="max-height: #{ballotImgHeight}px; max-width: #{ballotImgWidth}px;" />
+                     style="max-height: #{ballotImgHeight}cm; max-width: #{ballotImgWidth}cm;" />
     <span class="valign">
     <div class="genmsg">_{MsgGenerator host}
 |]
