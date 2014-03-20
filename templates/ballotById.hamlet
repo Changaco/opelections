@@ -5,21 +5,23 @@
         ^{ballotWidget host ballot}
     <div class="hidden-print table-layout" style="min-width: #{ballotWidth ballot}cm">
         <div>
-            <div>
-                <b>Partagez ce bulletin:</b> ^{shareWidget MsgShareBallot url}
+            <div><b>Partagez ce bulletin:</b> ^{shareWidget MsgShareBallot url}
             <div>
                 <button class="btn btn-default" id="printButton">
-                    <span class="glyphicon glyphicon-print"></span> Imprimer
+                    <span class="glyphicon glyphicon-print">
+                    Imprimer
             $if elem ballotIdText uploads
                 <form action="" method="post" id="deleteForm">
                     <button type="submit" class="btn btn-danger" id="printButton">
-                        <span class="glyphicon glyphicon-remove"></span> Supprimer
+                        <span class="glyphicon glyphicon-remove">
+                        Supprimer
         $if not $ null uploads
             <div>
                 <div>
                     <p id="uploads">_{MsgSavedBallots $ length uploads}
                     <ul>
                         $forall uploadId <- uploads
-                            <li><a href="/b/#{uploadId}">Bulletin n°#{uploadId}
+                            <li>
+                                <a href="/b/#{uploadId}">Bulletin n°#{uploadId}
 
 ^{navWidget "BallotById"}

@@ -27,7 +27,7 @@ faqWidget = $(whamletFile "templates/faq.hamlet")
 
 icon :: Text -> Text -> Widget
 icon code alt = [whamlet|
-<i class="fa fa-lg fa-#{code}"></i>
+<i class="fa fa-lg fa-#{code}">
 <span class="sr-only"> #{alt}
 |]
 

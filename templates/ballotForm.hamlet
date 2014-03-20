@@ -31,7 +31,8 @@
                     Annuler
                 <button type="button" class="btn btn-primary" data-dismiss="modal"
                         onclick="javascript:$('#mainform').submit()">
-                    <span class="glyphicon glyphicon-upload"></span> Publier
+                    <span class="glyphicon glyphicon-upload">
+                    Publier
 
 <div class="modal fade" id="chooseSuggestionModal">
     <div class="modal-dialog modal-lg">
@@ -78,7 +79,8 @@
             <div id="imagesSelect">
             <button type="button" class="btn btn-default"
                     data-toggle="modal" data-target="#addimageModal">
-                <span class="glyphicon glyphicon-plus"></span> Ajouter une image
+                <span class="glyphicon glyphicon-plus">
+                Ajouter une image
 
         <fieldset class="form-inline" id="printOptions">
             <legend>Mise en page
@@ -115,8 +117,10 @@
         <div class="hidden-print">
             <button class="btn btn-default"
                     data-toggle="modal" data-target="#shareConfirmModal">
-                <span class="glyphicon glyphicon-save"></span> Sauvegarder
+                <span class="glyphicon glyphicon-save">
+                Sauvegarder
             <button class="btn btn-default" id="printButton">
-                <span class="glyphicon glyphicon-print"></span> Imprimer
+                <span class="glyphicon glyphicon-print">
+                Imprimer
 
 ^{navWidget "BallotFormR"}
