@@ -13,7 +13,7 @@
             <a href="b/10"><img src="@{StaticR img_ballot_10_r_png}">
             <a href="b/11"><img src="@{StaticR img_ballot_11_r_png}">
             <p>
-                <a href="@{BallotListR}">Parcourir la liste complète des bulletins
+                <a href="@{BallotListR}">_{MsgBallotListR}
 
         <p id="share"><b>Partager cette page:</b> ^{shareWidget MsgShareOpelections url}
 

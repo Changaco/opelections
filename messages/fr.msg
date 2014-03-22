@@ -1,7 +1,7 @@
 BallotByIdTitle id@Text: Bulletin de vote n°#{id} - #OpElections
-BallotFormR: Générateur de bulletin
+BallotFormR: Créer votre bulletin
 BallotFormTitle: Générateur de bulletins de vote - #OpElections
-BallotListR: Liste des bulletins
+BallotListR: Parcourir les bulletins publiés
 BallotListTitle: Liste des bulletins de vote - #OpElections
 NotAuthorizedToDeleteBallot: Vous n'êtes pas authorisé à supprimer ce bulletin.
 Generator host@Text: Ce bulletin de vote a été créé via http://#{host}/

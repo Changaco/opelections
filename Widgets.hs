@@ -41,11 +41,17 @@ navWidget routeName =
 <nav class="hidden-print" id="nav">
     <ul class="nav nav-pills">
         <li :isRootR:class="active">
-            <a href="@{RootR}">_{MsgRootR}
+            <a href="@{RootR}">
+                <span class="glyphicon glyphicon-home">
+                _{MsgRootR}
         <li :isBallotFormR:class="active">
-            <a href="@{BallotFormR}">_{MsgBallotFormR}
+            <a href="@{BallotFormR}">
+                <span class="glyphicon glyphicon-plus">
+                _{MsgBallotFormR}
         <li :isBallotListR:class="active">
-            <a href="@{BallotListR}">_{MsgBallotListR}
+            <a href="@{BallotListR}">
+                <span class="glyphicon glyphicon-list">
+                _{MsgBallotListR}
 |]
 
 
