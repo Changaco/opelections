@@ -10,8 +10,8 @@
 
         <div id="examples">
             <p>Exemples de bulletins créés avec notre générateur (images à taille réduite):
-            <a href="b/10"><img src="static/img/ballot-10-r.png">
-            <a href="b/11"><img src="static/img/ballot-11-r.png">
+            <a href="b/10"><img src="@{StaticR img_ballot_10_r_png}">
+            <a href="b/11"><img src="@{StaticR img_ballot_11_r_png}">
             <p>
                 <a href="@{BallotListR}">Parcourir la liste complète des bulletins
 

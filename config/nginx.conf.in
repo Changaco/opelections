@@ -23,7 +23,7 @@ server {
 
     server_name  static.DOMAIN;
 
-    access_log  LOGDIR/access.log;
+    access_log  LOGDIR/access_static.log;
 
     add_header Access-Control-Allow-Origin "*";
 
