@@ -67,9 +67,7 @@ library
                  , persistent-sqlite
                  , persistent-template
                  , process >= 1.2.0.0
-                 , shakespeare-css
-                 , shakespeare-js
-                 , shakespeare-text
+                 , shakespeare
                  , system-filepath
                  , template-haskell
                  , text
