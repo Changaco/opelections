@@ -46,6 +46,7 @@ library
                 NoMonomorphismRestriction
                 DeriveDataTypeable
                 RecordWildCards
+                ViewPatterns
 
     build-depends: base >= 4 && < 5
                  , blaze-html

@@ -63,7 +63,7 @@ postBallotFormR = do
     if own
        then do
             maybePrevUploads <- lookupSession "uploads"
-            let textToAdd = "," <> keyToText ballotId
+            let textToAdd = "," <> tshow ballotId
             setSession "uploads" $ maybe (textToAdd) (<> textToAdd) maybePrevUploads
        else return ()
     -- Redirect
@@ -72,16 +72,13 @@ postBallotFormR = do
 
 getUploadsFromSession = filter (not . T.null) <$> T.splitOn "," <$> maybe "" id <$> lookupSession "uploads"
 
-keyToText key = pack $ show i
-    where (PersistInt64 i) = unKey key
-
 getBallotByIdR :: BallotId -> Handler Html
 getBallotByIdR ballotId = do
     ballot <- runDB $ get404 ballotId
     host <- getHost
     url <- getUrl
     uploads <- getUploadsFromSession
-    let ballotIdText = keyToText ballotId
+    let ballotIdText = tshow ballotId
         ownBallot = ballotIdText `elem` uploads
     defaultLayout $ do
         setTitleI $ MsgBallotByIdTitle ballotIdText
@@ -90,7 +87,7 @@ getBallotByIdR ballotId = do
 postBallotByIdR :: BallotId -> Handler ()
 postBallotByIdR ballotId = do
     uploads <- getUploadsFromSession
-    let ballotIdText = keyToText ballotId
+    let ballotIdText = tshow ballotId
     if ballotIdText `notElem` uploads
        then errorPage unauthorized401 MsgNotAuthorizedToDeleteBallot
        else do

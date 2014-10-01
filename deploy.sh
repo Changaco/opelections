@@ -2,7 +2,7 @@
 
 appname="opelections"
 domain="opelections.oy.lc"
-ghc_version="7.8.2"
+ghc_version="7.8.3"
 libdir="lib/ghc-$ghc_version"
 sandbox_libdir=".cabal-sandbox/lib/x86_64-linux-ghc-$ghc_version"
 
