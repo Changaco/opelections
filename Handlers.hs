@@ -4,9 +4,13 @@ import Import
 
 import qualified Data.Text as T
 import Data.Time.Clock.POSIX
+import Database.Persist.Sql (unSqlBackendKey)
 import Network.HTTP.Types
 
 import Widgets
+
+
+tshowBallotId = tshow . unSqlBackendKey . unBallotKey
 
 
 errorPage :: Status -> AppMessage -> Handler ()
@@ -63,7 +67,7 @@ postBallotFormR = do
     if own
        then do
             maybePrevUploads <- lookupSession "uploads"
-            let textToAdd = "," <> tshow ballotId
+            let textToAdd = "," <> tshowBallotId ballotId
             setSession "uploads" $ maybe (textToAdd) (<> textToAdd) maybePrevUploads
        else return ()
     -- Redirect
@@ -78,7 +82,7 @@ getBallotByIdR ballotId = do
     host <- getHost
     url <- getUrl
     uploads <- getUploadsFromSession
-    let ballotIdText = tshow ballotId
+    let ballotIdText = tshowBallotId ballotId
         ownBallot = ballotIdText `elem` uploads
     defaultLayout $ do
         setTitleI $ MsgBallotByIdTitle ballotIdText
@@ -87,7 +91,7 @@ getBallotByIdR ballotId = do
 postBallotByIdR :: BallotId -> Handler ()
 postBallotByIdR ballotId = do
     uploads <- getUploadsFromSession
-    let ballotIdText = tshow ballotId
+    let ballotIdText = tshowBallotId ballotId
     if ballotIdText `notElem` uploads
        then errorPage unauthorized401 MsgNotAuthorizedToDeleteBallot
        else do
